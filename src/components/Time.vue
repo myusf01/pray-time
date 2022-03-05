@@ -5,5 +5,5 @@
 <script>
 export default {
   name: "TimeComponent",
-};
+}
 </script>
