@@ -1,12 +1,9 @@
 <template>
-  <Time v-for="time in times" :key="time.date.readable" :times="time.timings" />
-  <div>
-    {{ today }}
-  </div>
+  <Time :times="today.timings" />
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import Time from './Time.vue'
 export default {
   name: 'TimesComponent',
@@ -14,8 +11,7 @@ export default {
     Time
   },
   computed: {
-    ...mapGetters(['today']),
-    ...mapState(['times'])
+    ...mapGetters(['today'])
   }
 }
 </script>
