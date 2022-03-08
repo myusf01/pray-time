@@ -28,11 +28,13 @@ export default {
     }
   },
   async fetchTimings({ commit }) {
-    // const city = ''
-    // const country = ''
+    const town = 'Yuksekova'
+    const city = 'Hakkari'
+    const country = 'Turkey'
     try {
       const res = await fetch(
-        `${process.env.VUE_APP_ADHAN_API_URL}city=Hakkari&country=Turkey`
+        // `${process.env.VUE_APP_ADHAN_API_URL}city=${city}&country=${country}`
+        `${process.env.VUE_APP_ADHAN_API_URL}address=${town},${city},${country}`
       )
 
       //   const data = await fetch(

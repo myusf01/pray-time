@@ -1,6 +1,10 @@
 <template>
-  <div class="home">
-    <Times />
+  <div
+    class="bg-amber-500 flex flex-row justify-center space-x-6 w-screen h-screen"
+  >
+    <div class="flex flex-row justify-center">
+      <Times />
+    </div>
   </div>
 </template>
 

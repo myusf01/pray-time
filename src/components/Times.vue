@@ -1,5 +1,5 @@
 <template>
-  <Time :times="today.timings" />
+  <Time :times="today" />
 </template>
 
 <script>
