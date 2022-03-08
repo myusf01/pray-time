@@ -2,7 +2,9 @@ export default {
   async fetchCountries({ commit }) {
     try {
       const data = await (
-        await fetch(`${process.env.VUE_APP_COUNTRY_API_URL}`)
+        await fetch(
+          `${process.env.VUE_APP_CORS_URL}/${process.env.VUE_APP_COUNTRY_API_URL}`
+        )
       ).json()
       console.log(await data.json())
 
@@ -34,7 +36,7 @@ export default {
     try {
       const res = await fetch(
         // `${process.env.VUE_APP_ADHAN_API_URL}city=${city}&country=${country}`
-        `${process.env.VUE_APP_ADHAN_API_URL}address=${town},${city},${country}`
+        `${process.env.VUE_APP_CORS_URL}/${process.env.VUE_APP_ADHAN_API_URL}address=${town},${city},${country}`
       )
 
       //   const data = await fetch(
