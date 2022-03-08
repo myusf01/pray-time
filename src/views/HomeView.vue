@@ -1,10 +1,7 @@
 <template>
-  <div
-    class="bg-amber-500 flex flex-row justify-center space-x-6 w-screen h-screen"
-  >
-    <div class="flex flex-row justify-center">
-      <Times />
-    </div>
+  <div class="home-container">
+    <Times />
+    <!-- <div class="flex max-h-fit max-w-fit"></div> -->
   </div>
 </template>
 

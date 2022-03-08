@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .home-container {
+    @apply bg-amber-500 
+    flex 
+    flex-row
+    justify-around
+    items-center
+    space-x-6
+    w-screen
+    h-screen;
+  }
+  .text-container {
+    @apply flex flex-row items-baseline space-x-10 rotate-[-90deg] mt-[30rem];
+  }
+  .time-card-container {
+    @apply flex
+    justify-center
+    items-center
+    w-[10%]
+    h-[100%]
+    bg-slate-100;
+  }
+}

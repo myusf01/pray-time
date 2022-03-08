@@ -1,11 +1,13 @@
 <template>
   <div
-    class="flex flex-col justify-center items-center p-5 w-[10vh] bg-slate-100"
+    class="time-card-container"
     v-for="(hour, timing) in times"
     :key="timing"
   >
-    <p class="text-xl">{{ timing }}</p>
-    <p class="">{{ hour.split(' ')[0] }}</p>
+    <div class="text-container">
+      <p class="text-xl">{{ timing }}</p>
+      <p class="">{{ hour.split(' ')[0] }}</p>
+    </div>
   </div>
 </template>
 
