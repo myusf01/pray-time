@@ -1,12 +1,18 @@
+const timingsUrl = `${process.env.VUE_APP_CORS_URL}/${process.env.VUE_APP_ADHAN_API_URL}`
+const countryUrl = `${process.env.VUE_APP_CORS_URL}/${process.env.VUE_APP_COUNTRY_API_URL}`
+const cityUrl = (state) => `${countryUrl}/${state.countryIsoId}/states`
+const townUrl = (state) =>
+  `${countryUrl}/${state.countryIsoId}/states/${state.cityIsoId}/cities`
+
+const headers = new Headers()
+headers.append('X-CSCAPI-KEY', process.env.VUE_APP_COUNTRY_API_KEY)
+const requestOptions = { method: 'GET', headers: headers, redirect: 'follow' }
+
 export default {
   async fetchCountries({ commit }) {
     try {
-      const data = await (
-        await fetch(
-          `${process.env.VUE_APP_CORS_URL}/${process.env.VUE_APP_COUNTRY_API_URL}`
-        )
-      ).json()
-      console.log(await data.json())
+      const res = await fetch(countryUrl, requestOptions)
+      const data = await res.json()
 
       commit('GET_COUNTRIES', data)
     } catch (e) {
@@ -15,7 +21,8 @@ export default {
   },
   async fetchCities({ commit, state }) {
     try {
-      const data = fetch(state.countryId)
+      const res = await fetch(cityUrl(state), requestOptions)
+      const data = await res.json()
       commit('GET_CITIES', data)
     } catch (e) {
       console.log(e)
@@ -23,20 +30,21 @@ export default {
   },
   async fetchTowns({ commit, state }) {
     try {
-      const data = fetch(state.cityId)
+      const res = await fetch(townUrl(state), requestOptions)
+      const data = await res.json()
       commit('GET_TOWNS', data)
     } catch (e) {
       console.log(e)
     }
   },
-  async fetchTimings({ commit }) {
-    const town = 'Yuksekova'
-    const city = 'Hakkari'
-    const country = 'Turkey'
+  async fetchTimings({ commit, state }) {
+    const town = state.townIsoId
+    const city = state.cityIsoId
+    const country = state.countryIsoId
     try {
       const res = await fetch(
         // `${process.env.VUE_APP_ADHAN_API_URL}city=${city}&country=${country}`
-        `${process.env.VUE_APP_CORS_URL}/${process.env.VUE_APP_ADHAN_API_URL}address=${town},${city},${country}`
+        `${timingsUrl}address=${town},${city},${country}`
       )
 
       //   const data = await fetch(
@@ -44,7 +52,6 @@ export default {
       //   ).json
 
       const { data } = await res.json()
-      console.log(data)
       commit('GET_TIMINGS', data)
     } catch (e) {
       console.log(e)
