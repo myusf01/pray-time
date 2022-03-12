@@ -5,8 +5,8 @@
     :key="timing"
   >
     <div class="text-container">
-      <p class="text-xl">{{ timing }}</p>
-      <p class="">{{ hour.split(' ')[0] }}</p>
+      <p class="text-xl text-right">{{ timing }}</p>
+      <p class="text-right">{{ hour.split(' ')[0] }}</p>
     </div>
   </div>
 </template>
