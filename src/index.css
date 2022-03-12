@@ -3,18 +3,37 @@
 @tailwind utilities;
 
 @layer components {
-  .home-container {
+  .home {
     @apply bg-amber-500 
-    flex 
-    flex-row
     justify-around
-    items-center
     space-x-6
+    flex-row;
+  }
+  .settings {
+    @apply bg-black
+    justify-evenly
+    p-8
+    mx-auto
+    max-w-xl
+    flex-col;
+  }
+  .page-container {
+    @apply flex 
+    items-center
     w-screen
     h-screen;
   }
+  .menu {
+    @apply w-full;
+  }
   .text-container {
-    @apply flex flex-row items-baseline space-x-10 rotate-[-90deg] mt-[30rem];
+    @apply rotate-[-90deg]
+    flex
+    flex-row
+    items-baseline
+    space-x-10
+    mt-[30rem]
+    text-right;
   }
   .time-card-container {
     @apply flex

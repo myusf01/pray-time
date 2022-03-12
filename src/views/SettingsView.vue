@@ -1,6 +1,10 @@
 <template>
-  <div class="settings">
-    <select v-model="selectedCountry">
+  <div class="page-container settings">
+    <select
+      class="menu"
+      v-model="selectedCountry"
+      :disabled="!countries.length"
+    >
       <option value="-1">Select</option>
 
       <option
@@ -11,14 +15,14 @@
         {{ country.name }}
       </option>
     </select>
-    <select v-model="selectedCity">
+    <select class="menu" :disabled="!cities.length" v-model="selectedCity">
       <option value="-1">Select</option>
 
       <option v-for="city in cities" :key="city.id" :value="city.iso2">
         {{ city.name }}
       </option>
     </select>
-    <select v-model="selectedTown">
+    <select class="menu" :disabled="!cities.length" v-model="selectedTown">
       <option value="-1">Select</option>
 
       <option v-for="town in towns" :key="town.id" :value="town.name">
@@ -53,7 +57,7 @@ export default {
       'towns',
       'countryIsoId',
       'cityIsoId',
-      'townIsoId'
+      'townName'
     ]),
     selectedCountry: {
       get() {
@@ -75,11 +79,10 @@ export default {
     },
     selectedTown: {
       get() {
-        return this.townIsoId
+        return this.townName
       },
       set(townName) {
         this.SET_TOWN_ID(townName)
-        console.log(this.towns)
         this.fetchTimings()
       }
     }
