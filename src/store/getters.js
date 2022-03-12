@@ -2,12 +2,15 @@ import moment from 'moment/moment'
 
 export default {
   today: (state) => {
-    const theDay = state.times.find((time) =>
+    const time = state.times
+
+    if (!time.length) return false
+    const times = time.find((time) =>
       moment(time.date.gregorian.date, 'DD-MM-YYYY').isSame(moment(), 'day')
     )
-    // console.log(theDay)
-    // const timingsJson = JSON.parse(JSON.stringify(theDay.timings))
-    const timings = theDay.timings
+    // console.log(times)
+    // const timingsJson = JSON.parse(JSON.stringify(times.timings))
+    const timings = times.timings
     const timingsJson = {
       Imsak: timings.Imsak,
       Sunrise: timings.Sunrise,
@@ -20,8 +23,11 @@ export default {
     return timingsJson
   },
   userCity: (state) => {
-    const findCity = state.cities.find((city) => state.cityIsoId === city.iso2)
-    return findCity
+    const towns = state.towns
+    if (!towns.length) return { name: 'Select City' }
+
+    const findCity = towns.find((town) => state.townName === town.name)
+    return findCity ? findCity : { name: 'Select City' }
   }
 }
 

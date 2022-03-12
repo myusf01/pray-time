@@ -7,7 +7,6 @@ const townUrl = (state) =>
 const headers = new Headers()
 headers.append('X-CSCAPI-KEY', process.env.VUE_APP_COUNTRY_API_KEY)
 const requestOptions = { method: 'GET', headers: headers, redirect: 'follow' }
-
 export default {
   async fetchCountries({ commit }) {
     try {
@@ -40,9 +39,15 @@ export default {
     }
   },
   async fetchTimings({ commit, state }) {
-    const town = state.townIsoId
-    const city = state.cityIsoId
-    const country = state.countryIsoId
+    const countryList = state.countries
+    const cityList = state.cities
+    const townList = state.towns
+
+    const country = countryList.find(
+      (country) => state.countryIsoId === country.iso2
+    ).name
+    const city = cityList.find((city) => state.cityIsoId === city.iso2).name
+    const town = townList.find((town) => state.townName === town.name).name
     try {
       const res = await fetch(
         // `${process.env.VUE_APP_ADHAN_API_URL}city=${city}&country=${country}`
@@ -52,7 +57,6 @@ export default {
       //   const data = await fetch(
       //     `${process.env.VUE_APP_ADHAN_API_URL}city=${state.cityId}&country=${state.countryId}`
       //   ).json
-
       const { data } = await res.json()
       commit('GET_TIMINGS', data)
     } catch (e) {

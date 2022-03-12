@@ -18,6 +18,6 @@ export default {
     state.cityIsoId = data
   },
   SET_TOWN_ID(state, data) {
-    state.townIsoId = data
+    state.townName = data
   }
 }

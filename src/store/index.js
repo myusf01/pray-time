@@ -19,7 +19,7 @@ export default createStore({
     times: [],
     countryIsoId: '',
     cityIsoId: '',
-    townIsoId: ''
+    townName: ''
   },
   getters,
   mutations,
