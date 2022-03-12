@@ -22,7 +22,9 @@ export default {
   async fetchCities({ commit, state }) {
     try {
       const res = await fetch(cityUrl(state), requestOptions)
-      const data = await res.json()
+      // const data = await res.json()
+      const data = (await res.json()).sort((a, b) => a.iso2 - b.iso2)
+
       commit('GET_CITIES', data)
     } catch (e) {
       console.log(e)
@@ -31,7 +33,7 @@ export default {
   async fetchTowns({ commit, state }) {
     try {
       const res = await fetch(townUrl(state), requestOptions)
-      const data = await res.json()
+      const data = (await res.json()).sort((a, b) => a.iso2 - b.iso2)
       commit('GET_TOWNS', data)
     } catch (e) {
       console.log(e)

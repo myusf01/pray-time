@@ -18,6 +18,10 @@ export default {
     }
     // console.log(timingsJson)
     return timingsJson
+  },
+  userCity: (state) => {
+    const findCity = state.cities.find((city) => state.cityIsoId === city.iso2)
+    return findCity
   }
 }
 
