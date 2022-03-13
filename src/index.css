@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-  .app {
-    @apply antialiased;
-  }
   .home {
     @apply bg-amber-500 
     justify-around
