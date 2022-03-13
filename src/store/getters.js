@@ -1,10 +1,11 @@
+import { convertJson } from '@/utils'
 import moment from 'moment/moment'
 
 export default {
   today: (state) => {
-    const time = state.times
-
+    const time = convertJson(state.times)
     if (!time.length) return false
+
     const times = time.find((time) =>
       moment(time.date.gregorian.date, 'DD-MM-YYYY').isSame(moment(), 'day')
     )

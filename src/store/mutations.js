@@ -18,6 +18,15 @@ export default {
     state.cityIsoId = data
   },
   SET_TOWN_ID(state, data) {
-    state.townName = data
+    state.userTown.name = data
+  },
+  SET_USER_COUNTRY(state, data) {
+    state.userCountry = data
+  },
+  SET_USER_CITY(state, data) {
+    state.userCity = data
+  },
+  SET_USER_TOWN(state, data) {
+    state.userTown = data
   }
 }
