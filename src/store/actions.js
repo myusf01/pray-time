@@ -27,7 +27,9 @@ export default {
       // const resJson = await res.json()
       const resJson = await res.json()
 
-      const data = !resJson.length ? [convertJson(state.userCountry)] : resJson
+      const data = !resJson.length
+        ? [convertJson(state.userCountry)]
+        : resJson.sort((a, b) => a.iso2 - b.iso2)
       commit('GET_CITIES', data)
     } catch (e) {
       console.log(e)
@@ -37,14 +39,7 @@ export default {
     try {
       const res = await fetch(townUrl(state), requestOptions)
       const resJson = await res.json()
-      // if (res.status === 200 && !resJson.length) {
-      //   const getUserCity = state.cities.find(
-      //     (city) => city.iso2 === state.cityIsoId
-      //   )
-      //   return getUserCity
-      // }
 
-      // const data = resJson.sort((a, b) => a.iso2 - b.iso2)
       const data = !resJson.length
         ? [convertJson(state.userCity)]
         : resJson.sort((a, b) => a.iso2 - b.iso2)
