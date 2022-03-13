@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer components {
+  .app {
+    @apply antialiased;
+  }
   .home {
     @apply bg-amber-500 
     justify-around
@@ -24,7 +27,10 @@
     h-screen;
   }
   .menu {
-    @apply w-full;
+    @apply w-full
+    h-14
+    rounded-md
+    p-4;
   }
   .text-container {
     @apply rotate-[-90deg]
