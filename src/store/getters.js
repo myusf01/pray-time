@@ -9,8 +9,7 @@ export default {
     const times = time.find((time) =>
       moment(time.date.gregorian.date, 'DD-MM-YYYY').isSame(moment(), 'day')
     )
-    // console.log(times)
-    // const timingsJson = JSON.parse(JSON.stringify(times.timings))
+
     const timings = times.timings
     const timingsJson = {
       Imsak: timings.Imsak,
@@ -20,12 +19,10 @@ export default {
       Maghrib: timings.Maghrib,
       Isha: timings.Isha
     }
-    // console.log(timingsJson)
     return timingsJson
   },
   userCity: (state) => {
     const userTown = convertJson(state.userTown).name
-    console.log(userTown)
     return !userTown ? 'Select City' : userTown
   }
 }

@@ -28,22 +28,7 @@ export default {
       const resJson = await res.json()
 
       const data = !resJson.length ? [convertJson(state.userCountry)] : resJson
-      console.log(data)
       commit('GET_CITIES', data)
-      // console.log(state.countries)
-      // let data
-      // if (!resData.length) {
-      //   const getCountry = state.countries.find(
-      //     (country) => state.countryIsoId === country.iso2
-      //   )
-
-      //   data = [JSON.parse(JSON.stringify(getCountry))]
-      //   console.log(data)
-      //   commit('GET_CITIES', data)
-      // } else {
-      //   data = resData.sort((a, b) => a.iso2 - b.iso2)
-      //   commit('GET_CITIES', data)
-      // }
     } catch (e) {
       console.log(e)
     }
@@ -63,7 +48,6 @@ export default {
       const data = !resJson.length
         ? [convertJson(state.userCity)]
         : resJson.sort((a, b) => a.iso2 - b.iso2)
-      console.log(data)
       commit('GET_TOWNS', data)
     } catch (e) {
       console.log(e)
@@ -75,27 +59,10 @@ export default {
     const country = state.userCountry.name
     const apiUrl = `${timingsUrl}address=${town},${city},${country}`
     const defaultUrl = `${timingsUrl}address=Fatih,İstanbul,Turkey`
-    // const countryList = state.countries
-    // const cityList = state.cities
-    // const townList = state.towns
-    // const cityList = !state.cities.length ? state.countries : state.cities
-    // const townList = !state.towns.length ? state.cities : state.towns
-    // if (!cityList.length || !townList.length) {
-    // }
-    // const country = countryList.find(
-    //   (country) => state.countryIsoId === country.iso2
-    // ).name
-    // const city = !state.cities.length
-    //   ? country
-    //   : cityList.find((city) => state.cityIsoId === city.iso2).name
-    // const town = !state.towns.length
-    //   ? city
-    //   : townList.find((town) => state.userTown.name === town.name).name
 
     try {
       // `${process.env.VUE_APP_ADHAN_API_URL}city=${city}&country=${country}`
       const res = !country ? await fetch(defaultUrl) : await fetch(apiUrl)
-      console.log(res)
       //   const data = await fetch(
       //     `${process.env.VUE_APP_ADHAN_API_URL}city=${state.cityId}&country=${state.countryId}`
       //   ).json
