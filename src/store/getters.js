@@ -23,11 +23,9 @@ export default {
     return timingsJson
   },
   userCity: (state) => {
-    const towns = state.towns
-    if (!towns.length) return { name: 'Select City' }
-
-    const findCity = towns.find((town) => state.townName === town.name)
-    return findCity ? findCity : { name: 'Select City' }
+    const userTown = convertJson(state.userTown).name
+    console.log(userTown)
+    return !userTown ? 'Select City' : userTown
   }
 }
 

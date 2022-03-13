@@ -1,7 +1,7 @@
 <template>
   <nav class="flex justify-center space-x-4">
     <router-link to="/">Home</router-link>
-    <router-link to="/settings">{{ userCity.name }}</router-link>
+    <router-link to="/settings">{{ userCity }}</router-link>
   </nav>
   <router-view />
 </template>
