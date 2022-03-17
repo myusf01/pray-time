@@ -1,5 +1,11 @@
 <template>
-  <Time :times="todayTimes" :currentTime="activeTime" />
+  <Time
+    v-for="(value, key) in todayTimes"
+    :timing="key"
+    :hour="value"
+    :key="key"
+    :currentTime="activeTime"
+  />
 </template>
 
 <script>
@@ -12,9 +18,9 @@ export default {
   },
   computed: {
     ...mapGetters(['today', 'activeTime']),
-    todayTimes: (getters) => {
+    todayTimes(getters) {
       const today = getters.today
-      return {
+      const times = {
         Imsak: today.Imsak,
         Sunrise: today.Sunrise,
         Dhuhr: today.Dhuhr,
@@ -22,6 +28,7 @@ export default {
         Maghrib: today.Maghrib,
         Isha: today.Isha
       }
+      return times
     }
   }
 }

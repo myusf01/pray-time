@@ -87,7 +87,7 @@ export default {
         '[)'
       )
     ) {
-      return 'Duhur'
+      return 'Dhuhr'
     } else if (
       todayMoment.isBetween(
         convertToDate(getters.today.Asr, todayDate),

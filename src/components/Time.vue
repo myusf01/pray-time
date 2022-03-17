@@ -1,13 +1,7 @@
 <template>
-  <div
-    class="time-card-container"
-    v-for="(hour, timing) in times"
-    :key="timing"
-  >
+  <div class="time-card-container">
     <div class="text-container">
-      <div class="active-time" v-if="timing === currentTime">
-        Time is active
-      </div>
+      <div class="active-time" v-if="isActiveTime">Time is active</div>
       <p class="text-xl text-right">{{ timing }}</p>
       <p class="text-right">{{ hour }}</p>
     </div>
@@ -17,15 +11,10 @@
 <script>
 export default {
   name: 'TimeComponent',
-  props: { times: Object, currentTime: String },
+  props: { timing: String, hour: String, currentTime: String },
   computed: {
     isActiveTime() {
-      return this.times === this.currentTime
-    }
-  },
-  data() {
-    return {
-      activeTime: ''
+      return this.timing === this.currentTime
     }
   }
 }
