@@ -1,21 +1,17 @@
-import { convertJson } from '../utils/index'
-
-const timingsUrl = `${process.env.VUE_APP_CORS_URL}/${process.env.VUE_APP_ADHAN_API_URL}`
-const countryUrl = `${process.env.VUE_APP_CORS_URL}/${process.env.VUE_APP_COUNTRY_API_URL}`
-const cityUrl = (state) => `${countryUrl}/${state.userCountry.iso2}/states`
-const townUrl = (state) =>
-  `${countryUrl}/${state.userCountry.iso2}/states/${state.userCity.iso2}/cities`
-
-const headers = new Headers()
-headers.append('X-CSCAPI-KEY', process.env.VUE_APP_COUNTRY_API_KEY)
-const requestOptions = { method: 'GET', headers: headers, redirect: 'follow' }
+import {
+  convertJson,
+  cityUrl,
+  countryUrl,
+  requestOptions,
+  timingsUrl,
+  townUrl
+} from '@/utils'
 
 export default {
   async fetchCountries({ commit }) {
     try {
       const res = await fetch(countryUrl, requestOptions)
       const data = await res.json()
-
       commit('GET_COUNTRIES', data)
     } catch (e) {
       console.log(e)
