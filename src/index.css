@@ -1,12 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@layer base {
+  html {
+    @apply overflow-hidden;
+  }
+}
 @layer components {
   .home {
     @apply bg-amber-500 
     justify-around
-    space-x-6
     flex-row;
   }
   .settings {
@@ -19,6 +22,7 @@
   }
   .page-container {
     @apply flex 
+    justify-between
     items-center
     w-screen
     h-screen;
