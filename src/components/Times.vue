@@ -1,5 +1,5 @@
 <template>
-  <Time :times="today" />
+  <Time :times="todayTimes" :currentTime="activeTime" />
 </template>
 
 <script>
@@ -11,7 +11,18 @@ export default {
     Time
   },
   computed: {
-    ...mapGetters(['today'])
+    ...mapGetters(['today', 'activeTime']),
+    todayTimes: (getters) => {
+      const today = getters.today
+      return {
+        Imsak: today.Imsak,
+        Sunrise: today.Sunrise,
+        Dhuhr: today.Dhuhr,
+        Asr: today.Asr,
+        Maghrib: today.Maghrib,
+        Isha: today.Isha
+      }
+    }
   }
 }
 </script>

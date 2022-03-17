@@ -5,8 +5,11 @@
     :key="timing"
   >
     <div class="text-container">
+      <div class="active-time" v-if="timing === currentTime">
+        Time is active
+      </div>
       <p class="text-xl text-right">{{ timing }}</p>
-      <p class="text-right">{{ hour.split(' ')[0] }}</p>
+      <p class="text-right">{{ hour }}</p>
     </div>
   </div>
 </template>
@@ -14,6 +17,16 @@
 <script>
 export default {
   name: 'TimeComponent',
-  props: { times: Object }
+  props: { times: Object, currentTime: String },
+  computed: {
+    isActiveTime() {
+      return this.times === this.currentTime
+    }
+  },
+  data() {
+    return {
+      activeTime: ''
+    }
+  }
 }
 </script>

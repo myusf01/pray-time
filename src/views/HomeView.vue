@@ -1,7 +1,6 @@
 <template>
   <div class="page-container home">
     <Times />
-    <!-- <div class="flex max-h-fit max-w-fit"></div> -->
   </div>
 </template>
 

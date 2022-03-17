@@ -1,4 +1,5 @@
-import { convertJson } from '@/utils'
+import { convertJson, convertToDate } from '@/utils'
+// import { newTimes } from '@/utils/convertTimings'
 import moment from 'moment/moment'
 
 export default {
@@ -9,21 +10,123 @@ export default {
     const times = time.find((time) =>
       moment(time.date.gregorian.date, 'DD-MM-YYYY').isSame(moment(), 'day')
     )
-
+    // const timings = { ...times.timings, date: times.date.gregorian.date }
     const timings = times.timings
+    // const newTimings = new newTimes(timings)
+    // console.log(newTimings)
     const timingsJson = {
-      Imsak: timings.Imsak,
-      Sunrise: timings.Sunrise,
-      Dhuhr: timings.Dhuhr,
-      Asr: timings.Asr,
-      Maghrib: timings.Maghrib,
-      Isha: timings.Isha
+      Date: times.date.gregorian.date,
+      Imsak: timings.Imsak.split(' ')[0],
+      Sunrise: timings.Sunrise.split(' ')[0],
+      Dhuhr: timings.Dhuhr.split(' ')[0],
+      Asr: timings.Asr.split(' ')[0],
+      Maghrib: timings.Maghrib.split(' ')[0],
+      Isha: timings.Isha.split(' ')[0]
     }
+
+    state.todayTimes = timingsJson
+    return timingsJson
+    // return newTimings
+  },
+  tomorrow: (state) => {
+    const time = convertJson(state.times)
+    if (!time.length) return false
+    // const now = convertJson(state.now)
+
+    const times = time.find((time) =>
+      moment(time.date.gregorian.date, 'DD-MM-YYYY').isSame(
+        moment().add(1, 'days'),
+        'day'
+      )
+    )
+    const timings = times.timings
+    // const newTimings = new newTimes(timings)
+    // console.log(newTimings)
+    const timingsJson = {
+      Date: times.date.gregorian.date,
+      Imsak: timings.Imsak.split(' ')[0],
+      Sunrise: timings.Sunrise.split(' ')[0],
+      Dhuhr: timings.Dhuhr.split(' ')[0],
+      Asr: timings.Asr.split(' ')[0],
+      Maghrib: timings.Maghrib.split(' ')[0],
+      Isha: timings.Isha.split(' ')[0]
+    }
+
     return timingsJson
   },
   userCity: (state) => {
     const userTown = convertJson(state.userTown).name
     return !userTown ? 'Select City' : userTown
+  },
+  activeTime: (state, getters) => {
+    const todayDate = getters.todayDate
+    const todayMoment = moment()
+    if (
+      todayMoment.isBetween(
+        convertToDate(getters.today.Imsak, todayDate),
+        convertToDate(getters.today.Sunrise, todayDate),
+        null,
+        '[)'
+      )
+    ) {
+      return 'Imsak'
+    } else if (
+      todayMoment.isBetween(
+        convertToDate(getters.today.Sunrise, todayDate),
+        convertToDate(getters.today.Dhuhr, todayDate),
+        null,
+        '[)'
+      )
+    ) {
+      return 'Sunrise'
+    } else if (
+      todayMoment.isBetween(
+        convertToDate(getters.today.Dhuhr, todayDate),
+        convertToDate(getters.today.Asr, todayDate),
+        null,
+        '[)'
+      )
+    ) {
+      return 'Duhur'
+    } else if (
+      todayMoment.isBetween(
+        convertToDate(getters.today.Asr, todayDate),
+        convertToDate(getters.today.Maghrib, todayDate),
+        null,
+        '[)'
+      )
+    ) {
+      return 'Asr'
+    } else if (
+      todayMoment.isBetween(
+        convertToDate(getters.today.Maghrib, todayDate),
+        convertToDate(getters.today.Isha, todayDate),
+        null,
+        '[)'
+      )
+    ) {
+      return 'Maghrib'
+    } else if (
+      todayMoment.isBetween(
+        convertToDate(getters.today.Isha, todayDate),
+        convertToDate(getters.tomorrow.Imsak, todayDate),
+        null,
+        '[)' || getters.isBeforeImsak
+      )
+    ) {
+      return 'Isha'
+    }
+  },
+  todayDate: (state) => {
+    const date = convertJson(state.todayTimes).Date
+    return date
+  },
+  isBeforeImsak: (state, getters) => {
+    // const today = convertJson(state.now)
+    const todayDate = getters.todayDate
+    const imsak = convertToDate(getters.today.Imsak, todayDate)
+
+    return moment().isBetween(moment().startOf('date'), imsak, null, '[)')
   }
 }
 
