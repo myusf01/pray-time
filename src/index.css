@@ -9,7 +9,7 @@
 @layer components {
   .home {
     @apply bg-amber-500 
-    justify-around
+    justify-center
     flex-row;
   }
   .settings {
@@ -22,7 +22,6 @@
   }
   .page-container {
     @apply flex 
-    justify-between
     items-center
     w-screen
     h-screen;
@@ -34,20 +33,36 @@
     p-4;
   }
   .text-container {
-    @apply rotate-[-90deg]
-    flex
+    @apply flex
     flex-row
-    items-baseline
-    space-x-10
-    mt-[30rem]
-    text-right;
+    items-baseline;
   }
-  .time-card-container {
+  .inactive-text {
+    @apply space-x-10
+    mt-[30rem];
+  }
+  .active-text {
+    @apply text-xl justify-center flex-col items-center space-y-10;
+  }
+  .inactive-card-container {
     @apply flex
     justify-center
     items-center
     w-[10%]
     h-[100%]
     bg-slate-100;
+  }
+  .active-card-container {
+    @apply w-[50%]
+    mx-auto
+    justify-evenly
+    flex-col
+    space-y-7
+    p-9
+    items-start
+    bg-orange-400;
+  }
+  .rotate-left {
+    @apply rotate-[-90deg];
   }
 }
