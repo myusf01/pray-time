@@ -25,11 +25,17 @@
     flex-col;
   }
 
-  .menu {
-    @apply w-full
+  .settings-item {
+    @apply flex
+    justify-center
+    items-center
+    w-full
     h-14
     rounded-md
     p-4;
+  }
+  .settings-text {
+    @apply text-xl font-medium;
   }
   .text-container {
     @apply flex;

@@ -1,7 +1,7 @@
 <template>
   <div class="page-container settings">
     <select
-      class="menu"
+      class="settings-item settings-text"
       v-model="selectedCountry"
       :disabled="!countries.length"
     >
@@ -11,14 +11,22 @@
         {{ country.name }}
       </option>
     </select>
-    <select class="menu" :disabled="!cities.length" v-model="selectedCity">
+    <select
+      class="settings-item settings-text"
+      :disabled="!cities.length"
+      v-model="selectedCity"
+    >
       <option value="-1">Select</option>
 
       <option v-for="city in cities" :key="city.id" :value="city">
         {{ city.name }}
       </option>
     </select>
-    <select class="menu" :disabled="!towns.length" v-model="selectedTown">
+    <select
+      class="settings-item settings-text"
+      :disabled="!towns.length"
+      v-model="selectedTown"
+    >
       <option value="-1">Select</option>
 
       <option v-for="town in towns" :key="town.id" :value="town">
@@ -26,12 +34,12 @@
       </option>
     </select>
     <router-link
-      class="bg-yellow-300"
+      class="settings-item settings-text bg-yellow-300"
       @click="fetchTimings"
       :disabled="!countries.length"
       to="/"
     >
-      Save and back.
+      Save
     </router-link>
   </div>
 </template>
