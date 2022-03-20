@@ -109,7 +109,7 @@ export default {
     } else if (
       todayMoment.isBetween(
         convertToDate(getters.today.Isha, todayDate),
-        convertToDate(getters.tomorrow.Imsak, todayDate),
+        convertToDate(getters.tomorrow.Imsak, getters.tomorrow.Date),
         null,
         '[)' || getters.isBeforeImsak
       )
