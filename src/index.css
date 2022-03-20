@@ -37,14 +37,12 @@
   .settings-text {
     @apply text-xl font-medium;
   }
-  .text-container {
-    @apply flex;
-  }
+
   .inactive-text {
-    @apply space-x-10 mb-10;
+    @apply w-[200px] relative rotate-left mb-20 space-x-9;
   }
   .active-text {
-    @apply text-xl justify-center flex-col items-center space-y-10;
+    @apply flex text-xl justify-center flex-col items-center space-y-10;
   }
   .inactive-card-container {
     @apply flex

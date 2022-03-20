@@ -1,6 +1,6 @@
 <template>
   <div v-if="!isActiveTime" class="inactive-card-container padding-sm">
-    <div class="w-[200px] rotate-left mb-20 space-x-9 text-2xl text-justify">
+    <div class="inactive-text text-xl sm:text-2xl">
       <span class="">{{ timing }}</span>
       <span class="font-bold">{{ hour }}</span>
     </div>
@@ -8,11 +8,11 @@
   <div v-else class="inactive-card-container active-card-container">
     <div class="mx-auto space-y-10 p-2">
       <router-link
-        class="font-bold active-text block mb-[30%] sm:text-xl md:text-2xl lg:text-4xl"
+        class="font-bold active-text block mb-[30%] text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
         to="/settings"
         >{{ userCity }}</router-link
       >
-      <div class="text-container active-text text-2xl">
+      <div class="active-text text-2xl md:text-4xl">
         <p>{{ timing }}</p>
         <p class="font-bold">{{ hour }}</p>
       </div>
