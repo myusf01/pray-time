@@ -3,14 +3,18 @@
 @tailwind utilities;
 @layer base {
   html {
-    @apply overflow-hidden;
+    @apply bg-black overflow-hidden;
   }
 }
 @layer components {
+  .page-container {
+    @apply flex 
+    items-center
+    h-screen;
+  }
   .home {
-    @apply bg-amber-500 
-    justify-center
-    flex-row;
+    @apply flex-row
+    justify-center;
   }
   .settings {
     @apply bg-black
@@ -20,12 +24,7 @@
     max-w-xl
     flex-col;
   }
-  .page-container {
-    @apply flex 
-    items-center
-    w-screen
-    h-screen;
-  }
+
   .menu {
     @apply w-full
     h-14
@@ -33,36 +32,35 @@
     p-4;
   }
   .text-container {
-    @apply flex
-    flex-row
-    items-baseline;
+    @apply flex;
   }
   .inactive-text {
-    @apply space-x-10
-    mt-[30rem];
+    @apply space-x-10 mb-10;
   }
   .active-text {
     @apply text-xl justify-center flex-col items-center space-y-10;
   }
   .inactive-card-container {
     @apply flex
-    justify-center
+    flex-col
+    justify-end
     items-center
     w-[10%]
-    h-[100%]
+    h-full
     bg-slate-100;
   }
+
   .active-card-container {
     @apply w-[50%]
-    mx-auto
     justify-evenly
-    flex-col
-    space-y-7
-    p-9
-    items-start
+    mx-auto
     bg-orange-400;
   }
   .rotate-left {
     @apply rotate-[-90deg];
+  }
+  .padding-sm {
+    @apply pb-20
+    px-1;
   }
 }

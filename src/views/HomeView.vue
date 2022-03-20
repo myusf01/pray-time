@@ -1,5 +1,7 @@
 <template>
-  <div class="page-container home">
+  <div
+    class="page-container home sm:max-w-3xl min-w-[310px] md:max-w-5xl lg:max-w-full"
+  >
     <Times />
   </div>
 </template>
