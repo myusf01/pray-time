@@ -10,7 +10,10 @@ export default {
     if (!time.length) return false
 
     const times = time.find((time) =>
-      moment(time.date.gregorian.date, 'DD-MM-YYYY').isSame(moment(), 'day')
+      moment(time.date.gregorian.date, 'DD-MM-YYYY').isSame(
+        moment(state.now),
+        'day'
+      )
     )
     // const timings = { ...times.timings, date: times.date.gregorian.date }
     const timings = times.timings
@@ -36,7 +39,7 @@ export default {
     // const now = convertJson(state.now)
     const times = time.find((time) =>
       moment(time.date.gregorian.date, 'DD-MM-YYYY').isSame(
-        moment().add(1, 'days'),
+        moment(state.now).add(1, 'days'),
         'day'
       )
     )
@@ -61,7 +64,7 @@ export default {
   },
   activeTime: (state, getters) => {
     const todayDate = getters.todayDate
-    const todayMoment = moment()
+    const todayMoment = moment(state.now)
     if (
       todayMoment.isBetween(
         convertToDate(getters.today.Imsak, todayDate),
@@ -127,7 +130,12 @@ export default {
     const todayDate = getters.todayDate
     const imsak = convertToDate(getters.today.Imsak, todayDate)
 
-    return moment().isBetween(moment().startOf('date'), imsak, null, '[)')
+    return moment(state.now).isBetween(
+      moment(state.now).startOf('date'),
+      imsak,
+      null,
+      '[)'
+    )
   },
 
   nextTime: () => (activeTime) => {
@@ -153,6 +161,7 @@ export default {
     let differenceSeconds
     const nextTime = getters.nextTime(activeTime)
 
+    // console.log(todayTimes)
     if (nextTime === 'Imsak') {
       differenceSeconds = getters.isBeforeImsak
         ? convertToDate(today.Imsak, today.Date).diff(

@@ -8,13 +8,13 @@
   <div v-else class="inactive-card-container active-card-container">
     <div class="mx-auto space-y-10 p-2">
       <router-link
-        class="font-bold text-center active-text block mb-[30%] text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+        class="active-text font-bold text-center block mb-[30%] text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
         to="/settings"
         >{{ userCity }}</router-link
       >
       <div class="active-text text-2xl md:text-4xl">
-        <p>{{ timing }}</p>
-        <p class="font-bold">{{ hour }}</p>
+        <span class="">{{ timing }}</span>
+        <span class="font-bold">{{ hour }}</span>
         <span>{{ remaining }} remained.</span>
       </div>
     </div>
