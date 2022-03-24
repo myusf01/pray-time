@@ -1,4 +1,8 @@
+import moment from 'moment/moment'
 export default {
+  UPDATE_TIME(state) {
+    state.now = moment()
+  },
   GET_COUNTRIES(state, data) {
     state.countries = data
   },

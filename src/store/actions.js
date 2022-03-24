@@ -8,6 +8,16 @@ import {
 } from '@/utils'
 
 export default {
+  async init({ dispatch }) {
+    try {
+      await dispatch('fetchCountries')
+      await dispatch('fetchCities')
+      await dispatch('fetchTowns')
+      await dispatch('fetchTimings')
+    } catch (e) {
+      console.log(e)
+    }
+  },
   async fetchCountries({ commit }) {
     try {
       const res = await fetch(countryUrl, requestOptions)
@@ -27,6 +37,7 @@ export default {
         ? [convertJson(state.userCountry)]
         : resJson.sort((a, b) => a.iso2 - b.iso2)
       commit('GET_CITIES', data)
+      commit('GET_TOWNS', [])
     } catch (e) {
       console.log(e)
     }
