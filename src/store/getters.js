@@ -127,6 +127,24 @@ export default {
     const imsak = convertToDate(getters.today.Imsak, todayDate)
 
     return moment().isBetween(moment().startOf('date'), imsak, null, '[)')
+  },
+
+  nextTime: () => (activeTime) => {
+    switch (activeTime) {
+      case 'Imsak':
+        return 'Sunrise'
+      case 'Sunrise':
+        return 'Dhuhr'
+      case 'Dhuhr':
+        return 'Asr'
+      case 'Asr':
+        return 'Maghrib'
+      case 'Maghrib':
+        return 'Isha'
+      case 'Isha':
+        return 'Imsak'
+    }
+  },
   }
 }
 
