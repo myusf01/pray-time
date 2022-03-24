@@ -5,8 +5,6 @@
       v-model="selectedCountry"
       :disabled="!countries.length"
     >
-      <option value="-1">Select</option>
-
       <option v-for="country in countries" :key="country.id" :value="country">
         {{ country.name }}
       </option>
@@ -16,8 +14,6 @@
       :disabled="!cities.length"
       v-model="selectedCity"
     >
-      <option value="-1">Select</option>
-
       <option v-for="city in cities" :key="city.id" :value="city">
         {{ city.name }}
       </option>
@@ -27,8 +23,6 @@
       :disabled="!towns.length"
       v-model="selectedTown"
     >
-      <option value="-1">Select</option>
-
       <option v-for="town in towns" :key="town.id" :value="town">
         {{ town.name }}
       </option>
@@ -36,7 +30,7 @@
     <router-link
       class="settings-item settings-text bg-yellow-300"
       @click="fetchTimings"
-      :disabled="!countries.length"
+      :disabled="!towns.length"
       to="/"
     >
       Save
@@ -84,7 +78,7 @@ export default {
       },
       set(country) {
         this.SET_USER_COUNTRY(country)
-        this.SET_COUNTRY_ID(country.iso2)
+        this.SET_COUNTRY_ID(country.id)
         this.fetchCities()
       }
     },
@@ -94,7 +88,7 @@ export default {
       },
       set(city) {
         this.SET_USER_CITY(city)
-        this.SET_CITY_ID(city.iso2)
+        this.SET_CITY_ID(city.id)
         this.fetchTowns()
       }
     },
