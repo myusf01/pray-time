@@ -8,13 +8,14 @@
   <div v-else class="inactive-card-container active-card-container">
     <div class="mx-auto space-y-10 p-2">
       <router-link
-        class="font-bold active-text block mb-[30%] text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+        class="font-bold text-center active-text block mb-[30%] text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
         to="/settings"
         >{{ userCity }}</router-link
       >
       <div class="active-text text-2xl md:text-4xl">
         <p>{{ timing }}</p>
         <p class="font-bold">{{ hour }}</p>
+        <span>{{ remaining }} remained.</span>
       </div>
     </div>
   </div>
@@ -24,7 +25,12 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'TimeComponent',
-  props: { timing: String, hour: String, currentTime: String },
+  props: {
+    timing: String,
+    hour: String,
+    currentTime: String,
+    remaining: String
+  },
   computed: {
     ...mapGetters(['userCity']),
     isActiveTime() {

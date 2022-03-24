@@ -1,6 +1,8 @@
 import { convertJson, convertToDate } from '@/utils'
 // import { newTimes } from '@/utils/convertTimings'
 import moment from 'moment/moment'
+import momentDurationFormatSetup from 'moment-duration-format'
+momentDurationFormatSetup(moment)
 
 export default {
   today: (state) => {
@@ -32,7 +34,6 @@ export default {
     const time = convertJson(state.times)
     if (!time.length) return false
     // const now = convertJson(state.now)
-
     const times = time.find((time) =>
       moment(time.date.gregorian.date, 'DD-MM-YYYY').isSame(
         moment().add(1, 'days'),
@@ -145,6 +146,30 @@ export default {
         return 'Imsak'
     }
   },
+  calcRemainingTime: (state, getters) => (activeTime, today) => {
+    // const todayTimes = today
+    // const tomorrowTimes = getters.tomorrow
+    // const now = moment(state.now)
+    let differenceSeconds
+    const nextTime = getters.nextTime(activeTime)
+
+    if (nextTime === 'Imsak') {
+      differenceSeconds = getters.isBeforeImsak
+        ? convertToDate(today.Imsak, today.Date).diff(
+            moment(state.now),
+            'second'
+          )
+        : convertToDate(getters.tomorrow.Imsak, getters.tomorrow.Date).diff(
+            moment(state.now),
+            'second'
+          )
+    } else {
+      differenceSeconds = convertToDate(today[nextTime], today.Date).diff(
+        moment(state.now),
+        'seconds'
+      )
+    }
+    return moment.duration(differenceSeconds, 'seconds').format('HH:mm:ss')
   }
 }
 
