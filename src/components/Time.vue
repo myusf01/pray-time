@@ -12,7 +12,7 @@
     v-else
     class="inactive-card-container active-card-container bg-gradient-to-tl from-[#FBD786] to-[#f7797d] drop-shadow-2xl"
   >
-    <div class="mx-auto space-y-10 p-2 text-white">
+    <div class="mx-auto space-y-10 p-2 text-white my-auto">
       <div class="active-text mb-[30%]">
         <router-link
           class="block font-bold text-3xl md:text-5xl underline"
@@ -31,8 +31,12 @@
       <div class="active-text text-2xl md:text-4xl">
         <span class="font-bold">{{ timing }}</span>
         <span class="">{{ hour }}</span>
-        <span>{{ remaining }} remained.</span>
       </div>
+    </div>
+    <div
+      class="counter active-text ml-auto my-auto p-3 rounded-l-3xl bg-opacity-50 text-2xl text-stone-500 bg-slate-50"
+    >
+      <span>{{ remaining }} to {{ nextTime(currentTime) }} </span>
     </div>
   </div>
 </template>
@@ -49,7 +53,7 @@ export default {
     dayInfo: Object
   },
   computed: {
-    ...mapGetters(['userCity']),
+    ...mapGetters(['userCity', 'nextTime']),
     isActiveTime() {
       return this.timing === this.currentTime
     }
