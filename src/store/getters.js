@@ -179,6 +179,29 @@ export default {
       )
     }
     return moment.duration(differenceSeconds, 'seconds').format('HH:mm:ss')
+  },
+  dayInfo: (state) => {
+    const time = convertJson(state.times)
+    if (!time.length) return false
+
+    const times = time.find((time) =>
+      moment(time.date.gregorian.date, 'DD-MM-YYYY').isSame(
+        moment(state.now),
+        'day'
+      )
+    ).date
+    const hijri = {
+      date: times.hijri.date,
+      stringEN: `${times.hijri.month.en} ${times.hijri.day}, ${times.hijri.year}`,
+      stringAR: `${times.hijri.month.ar} ${times.hijri.day}, ${times.hijri.year}`
+    }
+    // const gregorian = times.gregorian
+    const gregorian = {
+      date: times.gregorian.date,
+      string: `${times.gregorian.month.en} ${times.gregorian.day}, ${times.gregorian.year}`
+    }
+
+    return { hijri, gregorian }
   }
 }
 

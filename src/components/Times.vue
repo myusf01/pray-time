@@ -6,6 +6,7 @@
     :key="key"
     :currentTime="activeTime"
     :remaining="calcRemainingTime(activeTime, today)"
+    :dayInfo="dayInfo"
   />
 </template>
 
@@ -18,7 +19,7 @@ export default {
     Time
   },
   computed: {
-    ...mapGetters(['today', 'activeTime', 'calcRemainingTime']),
+    ...mapGetters(['today', 'activeTime', 'calcRemainingTime', 'dayInfo']),
     todayTimes(getters) {
       const today = getters.today
       const times = {

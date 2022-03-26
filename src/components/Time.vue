@@ -1,20 +1,36 @@
 <template>
-  <div v-if="!isActiveTime" class="inactive-card-container padding-sm">
-    <div class="inactive-text text-xl sm:text-2xl">
+  <div
+    v-if="!isActiveTime"
+    class="inactive-card-container padding-sm bg-gradient-to-b from-[#FBD786] to-[#f7797d] shadow-2xl"
+  >
+    <div class="inactive-text text-xl sm:text-2xl text-white">
       <span class="">{{ timing }}</span>
       <span class="font-bold">{{ hour }}</span>
     </div>
   </div>
-  <div v-else class="inactive-card-container active-card-container">
-    <div class="mx-auto space-y-10 p-2">
-      <router-link
-        class="active-text font-bold text-center block mb-[30%] text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
-        to="/settings"
-        >{{ userCity }}</router-link
-      >
+  <div
+    v-else
+    class="inactive-card-container active-card-container bg-gradient-to-tl from-[#FBD786] to-[#f7797d] drop-shadow-2xl"
+  >
+    <div class="mx-auto space-y-10 p-2 text-white">
+      <div class="active-text mb-[30%]">
+        <router-link
+          class="block font-bold text-3xl md:text-5xl underline"
+          to="/settings"
+          >{{ userCity }}</router-link
+        >
+        <div class="active-text space-y-1">
+          <span class="text-xl md:text-3xl">
+            {{ dayInfo.hijri.stringEN }}
+          </span>
+          <span class="md:text-2xl">
+            {{ dayInfo.gregorian.string }}
+          </span>
+        </div>
+      </div>
       <div class="active-text text-2xl md:text-4xl">
-        <span class="">{{ timing }}</span>
-        <span class="font-bold">{{ hour }}</span>
+        <span class="font-bold">{{ timing }}</span>
+        <span class="">{{ hour }}</span>
         <span>{{ remaining }} remained.</span>
       </div>
     </div>
@@ -29,7 +45,8 @@ export default {
     timing: String,
     hour: String,
     currentTime: String,
-    remaining: String
+    remaining: String,
+    dayInfo: Object
   },
   computed: {
     ...mapGetters(['userCity']),
