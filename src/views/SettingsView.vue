@@ -1,7 +1,7 @@
 <template>
   <div class="page-container settings">
     <select
-      class="settings-item settings-text"
+      class="settings-item settings-text upper shadow-lg shadow-gray-300/50"
       v-model="selectedCountry"
       :disabled="!countries.length"
     >
@@ -10,7 +10,7 @@
       </option>
     </select>
     <select
-      class="settings-item settings-text"
+      class="settings-item settings-text shadow-lg shadow-gray-300/50"
       :disabled="!cities.length"
       v-model="selectedCity"
     >
@@ -19,7 +19,7 @@
       </option>
     </select>
     <select
-      class="settings-item settings-text"
+      class="settings-item settings-text shadow-lg shadow-gray-300/50"
       :disabled="!towns.length"
       v-model="selectedTown"
     >
@@ -28,7 +28,7 @@
       </option>
     </select>
     <router-link
-      class="settings-item settings-text bg-blue-500 text-white"
+      class="settings-item settings-text bg-blue-500 text-white shadow-lg shadow-blue-500/50"
       @click="fetchTimings"
       :disabled="!towns.length"
       to="/"

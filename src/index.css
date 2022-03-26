@@ -32,7 +32,7 @@
     w-full
     h-14
     rounded-md
-    p-4;
+    p-3;
   }
   .settings-text {
     @apply text-xl font-medium;
