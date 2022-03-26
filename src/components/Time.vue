@@ -59,7 +59,7 @@ export default {
       return this.timing === this.currentTime
     },
     next() {
-      return this.nextTime(this.currentTime)
+      return this.nextTime
     }
   }
 }

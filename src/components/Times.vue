@@ -5,7 +5,7 @@
     :hour="value"
     :key="key"
     :currentTime="activeTime"
-    :remaining="calcRemainingTime(activeTime, today)"
+    :remaining="calcRemainingTime"
     :dayInfo="dayInfo"
   />
 </template>
@@ -23,12 +23,12 @@ export default {
     todayTimes(getters) {
       const today = getters.today
       const times = {
-        Imsak: today.Imsak,
-        Sunrise: today.Sunrise,
-        Dhuhr: today.Dhuhr,
-        Asr: today.Asr,
-        Maghrib: today.Maghrib,
-        Isha: today.Isha
+        Imsak: today.Imsak.format('HH:mm'),
+        Sunrise: today.Sunrise.format('HH:mm'),
+        Dhuhr: today.Dhuhr.format('HH:mm'),
+        Asr: today.Asr.format('HH:mm'),
+        Maghrib: today.Maghrib.format('HH:mm'),
+        Isha: today.Isha.format('HH:mm')
       }
       return times
     }

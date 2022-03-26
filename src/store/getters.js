@@ -17,47 +17,22 @@ export default {
       )
     )
     const timings = { ...times.timings, date: times.date.gregorian.date }
-    // const timings = times.timings
     const newTimings = new Timing(timings)
-    console.log(newTimings)
-    // const timingsJson = {
-    //   Date: times.date.gregorian.date,
-    //   Imsak: timings.Imsak.split(' ')[0],
-    //   Sunrise: timings.Sunrise.split(' ')[0],
-    //   Dhuhr: timings.Dhuhr.split(' ')[0],
-    //   Asr: timings.Asr.split(' ')[0],
-    //   Maghrib: timings.Maghrib.split(' ')[0],
-    //   Isha: timings.Isha.split(' ')[0]
-    // }
 
-    // state.todayTimes = timingsJson
-    // return timingsJson
     return newTimings
   },
   tomorrow: (state) => {
     const time = convertJson(state.times)
     if (!time.length) return false
-    // const now = convertJson(state.now)
     const times = time.find((time) =>
       moment(time.date.gregorian.date, 'DD-MM-YYYY').isSame(
         moment(state.now).add(1, 'days'),
         'day'
       )
     )
-    const timings = times.timings
-    // const newTimings = new newTimes(timings)
-    // console.log(newTimings)
-    const timingsJson = {
-      Date: times.date.gregorian.date,
-      Imsak: timings.Imsak.split(' ')[0],
-      Sunrise: timings.Sunrise.split(' ')[0],
-      Dhuhr: timings.Dhuhr.split(' ')[0],
-      Asr: timings.Asr.split(' ')[0],
-      Maghrib: timings.Maghrib.split(' ')[0],
-      Isha: timings.Isha.split(' ')[0]
-    }
-
-    return timingsJson
+    const timings = { ...times.timings, date: times.date.gregorian.date }
+    const newTimings = new Timing(timings)
+    return newTimings
   },
   userCity: (state) => {
     const userTown = convertJson(state.userTown).name
@@ -108,7 +83,7 @@ export default {
     } else if (
       todayMoment.isBetween(
         getters.today.Isha,
-        getters.tomorrow.Imsak.tomorrow.Date,
+        getters.tomorrow.Imsak,
         null,
         '[)' || getters.isBeforeImsak
       )
@@ -131,8 +106,8 @@ export default {
     )
   },
 
-  nextTime: () => (activeTime) => {
-    switch (activeTime) {
+  nextTime: (state, getters) => {
+    switch (getters.activeTime) {
       case 'Imsak':
         return 'Sunrise'
       case 'Sunrise':
@@ -147,24 +122,14 @@ export default {
         return 'Imsak'
     }
   },
-  calcRemainingTime: (state, getters) => (activeTime, today) => {
-    // const todayTimes = today
-    // const tomorrowTimes = getters.tomorrow
-    // const now = moment(state.now)
-
+  calcRemainingTime: (state, getters) => {
     let differenceSeconds
-    const nextTime = getters.nextTime(activeTime)
-
+    const nextTime = getters.nextTime
+    const today = getters.today
     if (nextTime === 'Imsak') {
-      differenceSeconds = !getters.isBeforeImsak
-        ? getters.tomorrow.Imsak.diff(moment(state.now), 'second')
-        : today.Imsak.diff(moment(state.now), 'second')
-      // const isit = getters.isBeforeImsak ? 'yes' : 'no'
-      // console.log(isit)
-      // differenceSeconds = convertToDate(
-      //   getters.tomorrow.Imsak,
-      //   getters.tomorrow.Date
-      // ).diff(moment(state.now), 'second')
+      differenceSeconds = getters.isBeforeImsak
+        ? today.Imsak.diff(moment(state.now), 'second')
+        : getters.tomorrow.Imsak.diff(moment(state.now), 'second')
     } else {
       differenceSeconds = today[nextTime].diff(moment(state.now), 'seconds')
     }
