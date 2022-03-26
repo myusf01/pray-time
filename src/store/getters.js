@@ -1,7 +1,8 @@
-import { convertJson, convertToDate } from '@/utils'
+import { convertJson } from '@/utils'
 // import { newTimes } from '@/utils/convertTimings'
 import moment from 'moment/moment'
 import momentDurationFormatSetup from 'moment-duration-format'
+import Timing from '@/utils/convertTimings'
 momentDurationFormatSetup(moment)
 
 export default {
@@ -15,23 +16,23 @@ export default {
         'day'
       )
     )
-    // const timings = { ...times.timings, date: times.date.gregorian.date }
-    const timings = times.timings
-    // const newTimings = new newTimes(timings)
-    // console.log(newTimings)
-    const timingsJson = {
-      Date: times.date.gregorian.date,
-      Imsak: timings.Imsak.split(' ')[0],
-      Sunrise: timings.Sunrise.split(' ')[0],
-      Dhuhr: timings.Dhuhr.split(' ')[0],
-      Asr: timings.Asr.split(' ')[0],
-      Maghrib: timings.Maghrib.split(' ')[0],
-      Isha: timings.Isha.split(' ')[0]
-    }
+    const timings = { ...times.timings, date: times.date.gregorian.date }
+    // const timings = times.timings
+    const newTimings = new Timing(timings)
+    console.log(newTimings)
+    // const timingsJson = {
+    //   Date: times.date.gregorian.date,
+    //   Imsak: timings.Imsak.split(' ')[0],
+    //   Sunrise: timings.Sunrise.split(' ')[0],
+    //   Dhuhr: timings.Dhuhr.split(' ')[0],
+    //   Asr: timings.Asr.split(' ')[0],
+    //   Maghrib: timings.Maghrib.split(' ')[0],
+    //   Isha: timings.Isha.split(' ')[0]
+    // }
 
-    state.todayTimes = timingsJson
-    return timingsJson
-    // return newTimings
+    // state.todayTimes = timingsJson
+    // return timingsJson
+    return newTimings
   },
   tomorrow: (state) => {
     const time = convertJson(state.times)
@@ -63,12 +64,11 @@ export default {
     return !userTown ? 'Select City' : userTown
   },
   activeTime: (state, getters) => {
-    const todayDate = getters.todayDate
     const todayMoment = moment(state.now)
     if (
       todayMoment.isBetween(
-        convertToDate(getters.today.Imsak, todayDate),
-        convertToDate(getters.today.Sunrise, todayDate),
+        getters.today.Imsak,
+        getters.today.Sunrise,
         null,
         '[)'
       )
@@ -76,26 +76,21 @@ export default {
       return 'Imsak'
     } else if (
       todayMoment.isBetween(
-        convertToDate(getters.today.Sunrise, todayDate),
-        convertToDate(getters.today.Dhuhr, todayDate),
+        getters.today.Sunrise,
+        getters.today.Dhuhr,
         null,
         '[)'
       )
     ) {
       return 'Sunrise'
     } else if (
-      todayMoment.isBetween(
-        convertToDate(getters.today.Dhuhr, todayDate),
-        convertToDate(getters.today.Asr, todayDate),
-        null,
-        '[)'
-      )
+      todayMoment.isBetween(getters.today.Dhuhr, getters.today.Asr, null, '[)')
     ) {
       return 'Dhuhr'
     } else if (
       todayMoment.isBetween(
-        convertToDate(getters.today.Asr, todayDate),
-        convertToDate(getters.today.Maghrib, todayDate),
+        getters.today.Asr,
+        getters.today.Maghrib,
         null,
         '[)'
       )
@@ -103,8 +98,8 @@ export default {
       return 'Asr'
     } else if (
       todayMoment.isBetween(
-        convertToDate(getters.today.Maghrib, todayDate),
-        convertToDate(getters.today.Isha, todayDate),
+        getters.today.Maghrib,
+        getters.today.Isha,
         null,
         '[)'
       )
@@ -112,8 +107,8 @@ export default {
       return 'Maghrib'
     } else if (
       todayMoment.isBetween(
-        convertToDate(getters.today.Isha, todayDate),
-        convertToDate(getters.tomorrow.Imsak, getters.tomorrow.Date),
+        getters.today.Isha,
+        getters.tomorrow.Imsak.tomorrow.Date,
         null,
         '[)' || getters.isBeforeImsak
       )
@@ -127,9 +122,7 @@ export default {
   },
   isBeforeImsak: (state, getters) => {
     // const today = convertJson(state.now)
-    const todayDate = getters.todayDate
-    const imsak = convertToDate(getters.today.Imsak, todayDate)
-
+    const imsak = getters.today.Imsak
     return moment(state.now).isBetween(
       moment(state.now).startOf('date'),
       imsak,
@@ -158,25 +151,22 @@ export default {
     // const todayTimes = today
     // const tomorrowTimes = getters.tomorrow
     // const now = moment(state.now)
+
     let differenceSeconds
     const nextTime = getters.nextTime(activeTime)
 
-    // console.log(todayTimes)
     if (nextTime === 'Imsak') {
-      differenceSeconds = getters.isBeforeImsak
-        ? convertToDate(today.Imsak, today.Date).diff(
-            moment(state.now),
-            'second'
-          )
-        : convertToDate(getters.tomorrow.Imsak, getters.tomorrow.Date).diff(
-            moment(state.now),
-            'second'
-          )
+      differenceSeconds = !getters.isBeforeImsak
+        ? getters.tomorrow.Imsak.diff(moment(state.now), 'second')
+        : today.Imsak.diff(moment(state.now), 'second')
+      // const isit = getters.isBeforeImsak ? 'yes' : 'no'
+      // console.log(isit)
+      // differenceSeconds = convertToDate(
+      //   getters.tomorrow.Imsak,
+      //   getters.tomorrow.Date
+      // ).diff(moment(state.now), 'second')
     } else {
-      differenceSeconds = convertToDate(today[nextTime], today.Date).diff(
-        moment(state.now),
-        'seconds'
-      )
+      differenceSeconds = today[nextTime].diff(moment(state.now), 'seconds')
     }
     return moment.duration(differenceSeconds, 'seconds').format('HH:mm:ss')
   },
