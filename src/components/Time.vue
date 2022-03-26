@@ -34,9 +34,10 @@
       </div>
     </div>
     <div
-      class="counter active-text ml-auto my-auto p-3 rounded-l-3xl bg-opacity-50 text-2xl text-stone-500 bg-slate-50"
+      class="counter m-auto active-text space-y-0 p-3 rounded-full bg-opacity-40 shadow-md shadow-zinc-500-300/50 text-stone-500 bg-slate-50 w-32 h-32 text-lg md:w-36 md:h-36 md:text-3xl"
     >
-      <span>{{ remaining }} to {{ nextTime(currentTime) }} </span>
+      <span>{{ remaining }}</span>
+      <span class="font-medium text-xl">to {{ next }}</span>
     </div>
   </div>
 </template>
@@ -56,6 +57,9 @@ export default {
     ...mapGetters(['userCity', 'nextTime']),
     isActiveTime() {
       return this.timing === this.currentTime
+    },
+    next() {
+      return this.nextTime(this.currentTime)
     }
   }
 }
