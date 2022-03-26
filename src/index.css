@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer base {
   html {
-    @apply bg-black overflow-hidden;
+    @apply bg-black overflow-hidden font-light;
   }
 }
 @layer components {
@@ -39,10 +39,15 @@
   }
 
   .inactive-text {
-    @apply w-[200px] relative rotate-left mb-20 space-x-9;
+    @apply w-[200px]
+    relative
+    rotate-left
+    mb-20
+    space-x-9;
   }
   .active-text {
     @apply flex
+    text-center
     justify-center
     flex-col
     items-center

@@ -28,7 +28,7 @@
       </option>
     </select>
     <router-link
-      class="settings-item settings-text bg-yellow-300"
+      class="settings-item settings-text bg-blue-500 text-white"
       @click="fetchTimings"
       :disabled="!towns.length"
       to="/"
