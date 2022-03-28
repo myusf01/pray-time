@@ -85,8 +85,9 @@ export default {
         getters.today.Isha,
         getters.tomorrow.Imsak,
         null,
-        '[)' || getters.isBeforeImsak
-      )
+        '[)'
+      ) ||
+      getters.isBeforeImsak
     ) {
       return 'Isha'
     }
@@ -107,6 +108,7 @@ export default {
   },
 
   nextTime: (state, getters) => {
+    console.log(getters.activeTime)
     switch (getters.activeTime) {
       case 'Imsak':
         return 'Sunrise'
@@ -125,6 +127,7 @@ export default {
   calcRemainingTime: (state, getters) => {
     let differenceSeconds
     const nextTime = getters.nextTime
+    console.log(nextTime)
     const today = getters.today
     if (nextTime === 'Imsak') {
       differenceSeconds = getters.isBeforeImsak
