@@ -47,13 +47,13 @@
     from-[#3D7EAA]
     to-[#FFE47A];
   }
-  .Sunrise {
+  .Dhuhr {
     @apply bg-gradient-to-t
     from-[#108dc7]
     to-[#ef8e38];
   }
 
-  .Dhuhr {
+  .Sunrise {
     @apply bg-gradient-to-b
     from-[#fcce65]
     to-[#e26d71];
@@ -71,6 +71,12 @@
     via-[#6C5B7B]
     to-[#355C7D];
   }
+
+  /* .Isha {
+    @apply bg-gradient-to-b
+    from-[#1d2e3a]
+    to-[#3A6073];
+  } */
 
   .Isha {
     @apply bg-gradient-to-b
