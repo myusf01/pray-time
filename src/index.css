@@ -7,6 +7,81 @@
   }
 }
 @layer components {
+  /* .Dhuhr {
+    @apply bg-gradient-to-b
+    from-[#fdffed]
+    to-[#98cfff];
+  } */
+  /* .app {
+    @apply bg-gradient-to-b
+    from-[#eaafc8]
+    to-[#654ea3];
+  } */
+  /*
+    Colors to apply times 
+  */
+
+  /* .Dhuhr {
+    @apply bg-gradient-to-b
+    from-[#eaafc8]
+    to-[#654ea3];
+  } */
+  /* .Dhuhr {
+    @apply bg-gradient-to-b
+    from-[#659999]
+    to-[#f4791f];
+  } */
+  /* .Dhuhr {
+    @apply bg-gradient-to-b
+    from-[#4286f4]
+    to-[#373B44];
+  } */
+
+  /* .Dhuhr {
+    @apply bg-gradient-to-b
+    from-[#5b9bc5]
+    to-[#006eff];
+  } */
+  .Imsak {
+    @apply bg-gradient-to-t
+    from-[#3D7EAA]
+    to-[#FFE47A];
+  }
+  .Sunrise {
+    @apply bg-gradient-to-t
+    from-[#108dc7]
+    to-[#ef8e38];
+  }
+
+  .Dhuhr {
+    @apply bg-gradient-to-b
+    from-[#fcce65]
+    to-[#e26d71];
+  }
+
+  .Asr {
+    @apply bg-gradient-to-b
+    from-[#479bfa]
+    to-[#e04a45];
+  }
+
+  .Maghrib {
+    @apply bg-gradient-to-b
+    from-[#C06C84]
+    via-[#6C5B7B]
+    to-[#355C7D];
+  }
+
+  .Isha {
+    @apply bg-gradient-to-b
+    from-[#0F2027]
+    via-[#203A43]
+    to-[#2C5364];
+  }
+  /* Page content */
+  .active-time {
+    @apply bg-gradient-to-tl;
+  }
   .page-container {
     @apply flex 
     items-center

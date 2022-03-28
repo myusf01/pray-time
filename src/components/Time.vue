@@ -1,18 +1,20 @@
 <template>
   <div
     v-if="!isActiveTime"
-    class="inactive-card-container padding-sm bg-gradient-to-b from-[#FBD786] to-[#f7797d] shadow-2xl"
+    class="inactive-card-container padding-sm shadow-2xl"
+    :class="[currentTime, { 'active-time': isActiveTime }]"
   >
-    <div class="inactive-text text-xl sm:text-2xl text-white">
+    <div class="inactive-text text-xl sm:text-2xl text-slate-100">
       <span class="">{{ timing }}</span>
       <span class="font-bold">{{ hour }}</span>
     </div>
   </div>
   <div
     v-else
-    class="inactive-card-container active-card-container bg-gradient-to-tl from-[#FBD786] to-[#f7797d] drop-shadow-2xl"
+    class="inactive-card-container active-card-container drop-shadow-2xl"
+    :class="[currentTime, { 'active-time': isActiveTime }]"
   >
-    <div class="mx-auto space-y-10 p-2 text-white my-auto">
+    <div class="mx-auto space-y-10 p-2 text-slate-100 my-auto">
       <div class="active-text mb-[30%]">
         <router-link
           class="block font-bold text-3xl md:text-5xl underline"
@@ -34,10 +36,10 @@
       </div>
     </div>
     <div
-      class="counter m-auto active-text space-y-0 p-3 rounded-full bg-opacity-40 shadow-md shadow-zinc-500-300/50 text-stone-500 bg-slate-50 w-32 h-32 text-lg md:w-36 md:h-36 md:text-3xl"
+      class="counter m-auto active-text space-y-0 p-3 rounded-full shadow-md shadow-zinc-500-300/50 text-stone-100 bg-slate-50/10 w-32 h-32 text-lg md:w-40 md:h-40 md:text-3xl"
     >
       <span>{{ remaining }}</span>
-      <span class="font-medium text-xl">to {{ next }}</span>
+      <span class="font-medium text-2xl">to {{ next }}</span>
     </div>
   </div>
 </template>
