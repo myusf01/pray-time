@@ -1,40 +1,47 @@
 <template>
   <div class="page-container settings">
-    <select
-      class="settings-item settings-text upper shadow-lg shadow-gray-300/50"
-      v-model="selectedCountry"
-      :disabled="!countries.length"
+    <div
+      class="settings-card h-full rounded-t-2xl bg-gradient-to-t from-[#FFFDE4]/50 to-[#fdffed]/20 shadow-2xl shadow-[#271c44]"
     >
-      <option v-for="country in countries" :key="country.id" :value="country">
-        {{ country.name }}
-      </option>
-    </select>
-    <select
-      class="settings-item settings-text shadow-lg shadow-gray-300/50"
-      :disabled="!cities.length"
-      v-model="selectedCity"
-    >
-      <option v-for="city in cities" :key="city.id" :value="city">
-        {{ city.name }}
-      </option>
-    </select>
-    <select
-      class="settings-item settings-text shadow-lg shadow-gray-300/50"
-      :disabled="!towns.length"
-      v-model="selectedTown"
-    >
-      <option v-for="town in towns" :key="town.id" :value="town">
-        {{ town.name }}
-      </option>
-    </select>
-    <router-link
-      class="settings-item settings-text bg-blue-500 text-white shadow-lg shadow-blue-500/50"
-      @click="fetchTimings"
-      :disabled="!towns.length"
-      to="/"
-    >
-      Save
-    </router-link>
+      <span class="text-5xl md:text-6xl font-semibold text-stone-800"
+        >Settings</span
+      >
+      <select
+        class="settings-item settings-text upper shadow-lg shadow-gray-300/50"
+        v-model="selectedCountry"
+        :disabled="!countries.length"
+      >
+        <option v-for="country in countries" :key="country.id" :value="country">
+          {{ country.name }}
+        </option>
+      </select>
+      <select
+        class="settings-item settings-text shadow-lg shadow-gray-300/50"
+        :disabled="!cities.length"
+        v-model="selectedCity"
+      >
+        <option v-for="city in cities" :key="city.id" :value="city">
+          {{ city.name }}
+        </option>
+      </select>
+      <select
+        class="settings-item settings-text shadow-lg shadow-gray-300/50"
+        :disabled="!towns.length"
+        v-model="selectedTown"
+      >
+        <option v-for="town in towns" :key="town.id" :value="town">
+          {{ town.name }}
+        </option>
+      </select>
+      <router-link
+        class="settings-item settings-text bg-blue-500 text-slate-100 shadow-lg shadow-blue-500/50"
+        @click="fetchTimings"
+        :disabled="!towns.length"
+        to="/"
+      >
+        Save
+      </router-link>
+    </div>
   </div>
 </template>
 

@@ -1,9 +1,15 @@
 <template>
-  <router-view />
+  <div :class="activeTime">
+    <router-view />
+  </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    ...mapGetters(['activeTime'])
+  }
 }
 </script>

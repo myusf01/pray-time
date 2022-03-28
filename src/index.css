@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer base {
   html {
-    @apply bg-black overflow-hidden font-lora font-light;
+    @apply overflow-hidden font-lora font-light;
   }
 }
 @layer components {
@@ -92,9 +92,7 @@
     justify-center;
   }
   .settings {
-    @apply bg-black
-    justify-evenly
-    p-8
+    @apply justify-evenly
     mx-auto
     max-w-xl
     flex-col;
@@ -109,8 +107,16 @@
     rounded-md
     p-3;
   }
+  .settings-card {
+    @apply flex
+    flex-col
+    items-center
+    justify-evenly
+    p-8
+    mt-5;
+  }
   .settings-text {
-    @apply text-xl font-medium;
+    @apply text-xl font-semibold text-stone-800;
   }
 
   .inactive-text {
