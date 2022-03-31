@@ -87,9 +87,7 @@ export default {
     const town = state.userTown.name
     const city = state.userCity.name
     const country = state.userCountry.name
-    const date = moment(state.todayTimes.Date, 'DD-MM-YYYY')
-      .add(1, 'days')
-      .format('DD-MM-YYYY')
+    const date = moment().add(1, 'days').format('DD-MM-YYYY')
     const apiUrl = `${timingsByDateUrl}/${date}?method=4&address=${town},${city},${country}`
     // const defaultUrl = `${timingsByDateUrl}/${date}?method=4&address=Fatih,İstanbul,Turkey`
 
