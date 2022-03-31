@@ -1,5 +1,4 @@
 import { convertJson } from '@/utils'
-// import { newTimes } from '@/utils/convertTimings'
 import moment from 'moment/moment'
 import momentDurationFormatSetup from 'moment-duration-format'
 import Timing from '@/utils/convertTimings'
@@ -36,10 +35,10 @@ export default {
       )
     )
     // if times object is undefined try to fetch by date
-    if (!times) {
+    if (!times || !state.tomorrowTimes.length) {
       times = state.tomorrowTimes
     }
-
+    console.log('tomorrow', times)
     const timings = { ...times.timings, date: times.date.gregorian.date }
     const newTimings = new Timing(timings)
     return newTimings
