@@ -3,7 +3,8 @@ import {
   countryUrl,
   requestOptions,
   timingsUrl,
-  townUrl
+  townUrl,
+  timingsByDateUrl
 } from './urlInfo'
 
 import { convertToDate, convertJson } from './convertFunctions'
@@ -14,5 +15,6 @@ export {
   countryUrl,
   requestOptions,
   timingsUrl,
-  townUrl
+  townUrl,
+  timingsByDateUrl
 }

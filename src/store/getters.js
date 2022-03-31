@@ -3,13 +3,13 @@ import { convertJson } from '@/utils'
 import moment from 'moment/moment'
 import momentDurationFormatSetup from 'moment-duration-format'
 import Timing from '@/utils/convertTimings'
+import store from '.'
 momentDurationFormatSetup(moment)
 
 export default {
   today: (state) => {
     const time = convertJson(state.times)
     if (!time.length) return false
-
     const times = time.find((time) =>
       moment(time.date.gregorian.date, 'DD-MM-YYYY').isSame(
         moment(state.now),
@@ -21,15 +21,29 @@ export default {
 
     return newTimings
   },
-  tomorrow: (state) => {
+  tomorrow: async (state) => {
     const time = convertJson(state.times)
     if (!time.length) return false
-    const times = time.find((time) =>
+    let times
+    // const isLastDayOfMonth = moment(state.now, 'DD-MM-YYYY').isSame(
+    //   moment(state.now, 'DD-MM-YYYY').endOf('month'),
+    //   'day'
+    // )
+
+    times = time.find((time) =>
       moment(time.date.gregorian.date, 'DD-MM-YYYY').isSame(
         moment(state.now).add(1, 'days'),
         'day'
       )
     )
+    // if times object is undefined try to fetch by date
+    if (!times) {
+      times = await store.dispatch(
+        'fetchTimingsByDate',
+        moment(state.now).add(1, 'days')
+      )
+    }
+
     const timings = { ...times.timings, date: times.date.gregorian.date }
     const newTimings = new Timing(timings)
     return newTimings
@@ -108,7 +122,6 @@ export default {
   },
 
   nextTime: (state, getters) => {
-    console.log(getters.activeTime)
     switch (getters.activeTime) {
       case 'Imsak':
         return 'Sunrise'
@@ -127,7 +140,6 @@ export default {
   calcRemainingTime: (state, getters) => {
     let differenceSeconds
     const nextTime = getters.nextTime
-    console.log(nextTime)
     const today = getters.today
     if (nextTime === 'Imsak') {
       differenceSeconds = getters.isBeforeImsak

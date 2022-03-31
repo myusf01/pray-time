@@ -4,7 +4,8 @@ import {
   countryUrl,
   requestOptions,
   timingsUrl,
-  townUrl
+  townUrl,
+  timingsByDateUrl
 } from '@/utils'
 
 export default {
@@ -70,6 +71,23 @@ export default {
       //   ).json
       const { data } = await res.json()
       commit('GET_TIMINGS', data)
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async fetchTimingsByDate({ state }, dateString) {
+    const town = state.userTown.name
+    const city = state.userCity.name
+    const country = state.userCountry.name
+    const date = dateString.format('DD-MM-YYYY')
+
+    const apiUrl = `${timingsByDateUrl}/${date}?method=4&address=${town},${city},${country}`
+    const defaultUrl = `${timingsByDateUrl}/${date}?method=4&address=Fatih,İstanbul,Turkey`
+
+    try {
+      const res = !country ? await fetch(defaultUrl) : await fetch(apiUrl)
+      const { data } = await res.json()
+      return data
     } catch (e) {
       console.log(e)
     }

@@ -1,4 +1,5 @@
 const timingsUrl = `${process.env.VUE_APP_CORS_URL}/${process.env.VUE_APP_ADHAN_API_URL}`
+const timingsByDateUrl = `${process.env.VUE_APP_CORS_URL}/${process.env.VUE_APP_ADHAN_API_BY_DATE_URL}`
 const countryUrl = `${process.env.VUE_APP_CORS_URL}/${process.env.VUE_APP_COUNTRY_API_URL}`
 
 const cityUrl = (state) => `${countryUrl}/${state.userCountry.iso2}/states`
@@ -16,4 +17,11 @@ const requestOptions = {
   redirect: 'follow'
 }
 
-export { timingsUrl, countryUrl, cityUrl, townUrl, requestOptions }
+export {
+  timingsUrl,
+  countryUrl,
+  timingsByDateUrl,
+  cityUrl,
+  townUrl,
+  requestOptions
+}
