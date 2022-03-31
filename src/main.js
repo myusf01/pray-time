@@ -13,10 +13,11 @@ async function init() {
 
   if (!store.state.countries.length) {
     await store.dispatch('init')
+  }
+  if (!store.state.tomorrowTimes.length) {
     await store.dispatch('fetchTimingsTomorrow')
   }
   if (!store.getters.tomorrow) {
-    await store.dispatch('fetchTimingsTomorrow')
     await store.dispatch('fetchTimings')
   }
 

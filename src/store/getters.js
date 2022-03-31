@@ -3,6 +3,7 @@ import { convertJson } from '@/utils'
 import moment from 'moment/moment'
 import momentDurationFormatSetup from 'moment-duration-format'
 import Timing from '@/utils/convertTimings'
+// import store from '.'
 momentDurationFormatSetup(moment)
 
 export default {
@@ -36,7 +37,7 @@ export default {
       )
     )
     // if times object is undefined try to fetch by date
-    if (!times) {
+    if (!times || !state.tomorrowTimes.length) {
       times = state.tomorrowTimes
     }
     console.log(times)
