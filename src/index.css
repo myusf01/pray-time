@@ -54,19 +54,19 @@
   }
 
   .Sunrise {
-    @apply bg-gradient-to-b
-    from-[#fcce65]
+    @apply bg-gradient-to-t
+    from-[#f8c54f]
     to-[#e26d71];
   }
 
   .Asr {
-    @apply bg-gradient-to-b
+    @apply bg-gradient-to-t
     from-[#479bfa]
     to-[#e04a45];
   }
 
   .Maghrib {
-    @apply bg-gradient-to-b
+    @apply bg-gradient-to-t
     from-[#C06C84]
     via-[#6C5B7B]
     to-[#355C7D];
@@ -103,7 +103,23 @@
     max-w-xl
     flex-col;
   }
-
+  .dropdown-menu {
+    @apply flex
+    z-50
+    flex-col
+    items-start
+    justify-start
+    p-4
+    h-auto
+    w-full
+    min-w-[100px]
+    max-h-[124px]
+    overflow-y-auto
+    bg-slate-100
+    space-y-2
+    rounded-md
+    shadow-xl;
+  }
   .settings-item {
     @apply flex
     justify-center
@@ -147,7 +163,7 @@
     items-center
     w-[10%]
     h-full
-    bg-slate-100;
+    bg-blue-700;
   }
 
   .active-card-container {
