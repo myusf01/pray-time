@@ -1,9 +1,7 @@
 import { convertJson } from '@/utils'
-// import { newTimes } from '@/utils/convertTimings'
 import moment from 'moment/moment'
 import momentDurationFormatSetup from 'moment-duration-format'
 import Timing from '@/utils/convertTimings'
-// import store from '.'
 momentDurationFormatSetup(moment)
 
 export default {
