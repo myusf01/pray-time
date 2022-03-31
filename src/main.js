@@ -13,10 +13,11 @@ async function init() {
 
   if (!store.state.countries.length) {
     await store.dispatch('init')
+    await store.dispatch('fetchTimingsTomorrow')
   }
   if (!store.getters.tomorrow) {
-    await store.dispatch('fetchTimings')
     await store.dispatch('fetchTimingsTomorrow')
+    await store.dispatch('fetchTimings')
   }
 
   createApp(App).use(store).use(router).mount('#app')
