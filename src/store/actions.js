@@ -5,15 +5,21 @@ import {
   requestOptions,
   timingsUrl,
   townUrl,
-  timingsByDateUrl
+  timingsByDateUrl,
+  defaultCountry,
+  defaultCity,
+  defaultTown
 } from '@/utils'
 
 export default {
-  async init({ dispatch }) {
+  async init({ commit, dispatch }) {
     try {
       await dispatch('fetchCountries')
+      commit('SET_USER_COUNTRY', defaultCountry)
       await dispatch('fetchCities')
+      commit('SET_USER_CITY', defaultCity)
       await dispatch('fetchTowns')
+      commit('SET_USER_TOWN', defaultTown)
       await dispatch('fetchTimings')
     } catch (e) {
       console.log(e)
@@ -61,11 +67,11 @@ export default {
     const city = state.userCity.name
     const country = state.userCountry.name
     const apiUrl = `${timingsUrl}address=${town},${city},${country}`
-    const defaultUrl = `${timingsUrl}address=Fatih,İstanbul,Turkey`
+    // const defaultUrl = `${timingsUrl}address=Fatih,İstanbul,Turkey`
 
     try {
       // `${process.env.VUE_APP_ADHAN_API_URL}city=${city}&country=${country}`
-      const res = !country ? await fetch(defaultUrl) : await fetch(apiUrl)
+      const res = await fetch(apiUrl)
       //   const data = await fetch(
       //     `${process.env.VUE_APP_ADHAN_API_URL}city=${state.cityId}&country=${state.countryId}`
       //   ).json
@@ -82,10 +88,10 @@ export default {
     const date = dateString.format('DD-MM-YYYY')
 
     const apiUrl = `${timingsByDateUrl}/${date}?method=4&address=${town},${city},${country}`
-    const defaultUrl = `${timingsByDateUrl}/${date}?method=4&address=Fatih,İstanbul,Turkey`
+    // const defaultUrl = `${timingsByDateUrl}/${date}?method=4&address=Fatih,İstanbul,Turkey`
 
     try {
-      const res = !country ? await fetch(defaultUrl) : await fetch(apiUrl)
+      const res = await fetch(apiUrl)
       const { data } = await res.json()
       return data
     } catch (e) {
