@@ -10,6 +10,7 @@ import {
   defaultCity,
   defaultTown
 } from '@/utils'
+import moment from 'moment'
 
 export default {
   async init({ commit, dispatch }) {
@@ -21,6 +22,7 @@ export default {
       await dispatch('fetchTowns')
       commit('SET_USER_TOWN', defaultTown)
       await dispatch('fetchTimings')
+      await dispatch('fetchTimingsTomorrow')
     } catch (e) {
       console.log(e)
     }
@@ -81,12 +83,13 @@ export default {
       console.log(e)
     }
   },
-  async fetchTimingsByDate({ commit, state }, dateString) {
+  async fetchTimingsTomorrow({ commit, state }) {
     const town = state.userTown.name
     const city = state.userCity.name
     const country = state.userCountry.name
-    const date = dateString.format('DD-MM-YYYY')
-
+    const date = moment(state.todayTimes.Date, 'DD-MM-YYYY')
+      .add(1, 'days')
+      .format('DD-MM-YYYY')
     const apiUrl = `${timingsByDateUrl}/${date}?method=4&address=${town},${city},${country}`
     // const defaultUrl = `${timingsByDateUrl}/${date}?method=4&address=Fatih,İstanbul,Turkey`
 

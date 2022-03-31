@@ -17,7 +17,7 @@ export default {
     )
     const timings = { ...times.timings, date: times.date.gregorian.date }
     const newTimings = new Timing(timings)
-
+    state.todayTimes = newTimings
     return newTimings
   },
   tomorrow: (state) => {
@@ -39,6 +39,7 @@ export default {
     if (!times) {
       times = state.tomorrowTimes
     }
+
     const timings = { ...times.timings, date: times.date.gregorian.date }
     const newTimings = new Timing(timings)
     return newTimings
@@ -102,7 +103,7 @@ export default {
     }
   },
   todayDate: (state) => {
-    const date = convertJson(state.todayTimes).Date
+    const date = state.todayTimes.Date
     return date
   },
   isBeforeImsak: (state, getters) => {

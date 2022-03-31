@@ -16,6 +16,7 @@ async function init() {
   }
   if (!store.getters.tomorrow) {
     await store.dispatch('fetchTimings')
+    await store.dispatch('fetchTimingsTomorrow')
   }
 
   createApp(App).use(store).use(router).mount('#app')
