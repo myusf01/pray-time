@@ -81,7 +81,7 @@ export default {
       console.log(e)
     }
   },
-  async fetchTimingsByDate({ state }, dateString) {
+  async fetchTimingsByDate({ commit, state }, dateString) {
     const town = state.userTown.name
     const city = state.userCity.name
     const country = state.userCountry.name
@@ -93,7 +93,7 @@ export default {
     try {
       const res = await fetch(apiUrl)
       const { data } = await res.json()
-      return data
+      commit('SET_TOMORROW_TIMINGS', data)
     } catch (e) {
       console.log(e)
     }

@@ -3,7 +3,6 @@ import { convertJson } from '@/utils'
 import moment from 'moment/moment'
 import momentDurationFormatSetup from 'moment-duration-format'
 import Timing from '@/utils/convertTimings'
-import store from '.'
 momentDurationFormatSetup(moment)
 
 export default {
@@ -21,7 +20,7 @@ export default {
 
     return newTimings
   },
-  tomorrow: async (state) => {
+  tomorrow: (state) => {
     const time = convertJson(state.times)
     if (!time.length) return false
     let times
@@ -38,12 +37,8 @@ export default {
     )
     // if times object is undefined try to fetch by date
     if (!times) {
-      times = await store.dispatch(
-        'fetchTimingsByDate',
-        moment(state.now).add(1, 'days')
-      )
+      times = state.tomorrowTimes
     }
-
     const timings = { ...times.timings, date: times.date.gregorian.date }
     const newTimings = new Timing(timings)
     return newTimings

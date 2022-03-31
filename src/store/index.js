@@ -19,6 +19,7 @@ export default createStore({
     towns: [],
     times: [],
     todayTimes: [],
+    tomorrowTimes: [],
     countryIsoId: '',
     cityIsoId: '',
     townName: '',

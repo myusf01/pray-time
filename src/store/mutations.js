@@ -32,5 +32,8 @@ export default {
   },
   SET_USER_TOWN(state, data) {
     state.userTown = data
+  },
+  SET_TOMORROW_TIMINGS(state, data) {
+    state.tomorrowTimes = data
   }
 }
