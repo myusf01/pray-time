@@ -38,6 +38,12 @@
 import DropdownMenu from './DropdownMenu.vue'
 export default {
   name: 'SettingsMenu',
+  data() {
+    return {
+      isShow: false,
+      menuTitle: this.menuLabel
+    }
+  },
   props: {
     menuList: Array,
     menuLabel: { type: String, default: 'Select' }
@@ -45,24 +51,9 @@ export default {
   components: {
     DropdownMenu
   },
-
   computed: {
     isDisabled() {
       return !this.menuList.length
-    }
-  },
-  data() {
-    return {
-      isShow: false,
-      menuTitle: this.menuLabel
-    }
-  },
-  methods: {
-    Title() {
-      if (this.isDisabled) {
-        this.menuTitle = ''
-      }
-      return this.menuTitle
     }
   }
 }

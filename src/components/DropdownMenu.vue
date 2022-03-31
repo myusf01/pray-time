@@ -18,17 +18,18 @@
 <script>
 export default {
   name: 'DropdownMenu',
+  data() {
+    return {
+      menuArray: this.menuList
+    }
+  },
   props: {
     menuList: {
       type: Array,
       default: () => []
     }
   },
-  data() {
-    return {
-      menuArray: this.menuList
-    }
-  },
+
   methods: {
     documentClick(e) {
       // manage dropdown menu

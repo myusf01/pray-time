@@ -6,35 +6,6 @@
       <span class="text-5xl md:text-6xl font-semibold text-stone-800"
         >Settings</span
       >
-      <!-- <select
-        class="settings-item settings-text upper shadow-lg shadow-gray-300/50"
-        v-model="selectedCountry"
-        :disabled="!countries.length"
-      >
-        <option v-for="country in countries" :key="country.id" :value="country">
-          {{ country.name }}
-        </option>
-      </select> -->
-
-      <!-- <select
-        class="settings-item settings-text shadow-lg shadow-gray-300/50"
-        :disabled="!cities.length"
-        v-model="selectedCity"
-      >
-        <option v-for="city in cities" :key="city.id" :value="city">
-          {{ city.name }}
-        </option>
-      </select> -->
-
-      <!-- <select
-        class="settings-item settings-text shadow-lg shadow-gray-300/50"
-        :disabled="!towns.length"
-        v-model="selectedTown"
-      >
-        <option v-for="town in towns" :key="town.id" :value="town">
-          {{ town.name }}
-        </option>
-      </select> -->
 
       <settings-menu
         :menuLabel="selectedCountry.name"
