@@ -91,7 +91,6 @@ export default {
         return this.userCountry
       },
       set(country) {
-        console.log(country)
         this.SET_USER_COUNTRY(country)
         this.SET_COUNTRY_ID(country.id)
         this.fetchCities()
