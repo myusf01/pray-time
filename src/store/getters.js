@@ -38,7 +38,6 @@ export default {
     if (!times || !state.tomorrowTimes.length) {
       times = state.tomorrowTimes
     }
-    console.log('tomorrow', times)
     const timings = { ...times.timings, date: times.date.gregorian.date }
     const newTimings = new Timing(timings)
     return newTimings

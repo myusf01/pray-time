@@ -5,11 +5,15 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'App',
   computed: {
-    ...mapGetters(['activeTime'])
+    ...mapGetters(['activeTime']),
+    ...mapActions(['fetchTimings'])
+  },
+  beforeMount() {
+    this.fetchTimings
   }
 }
 </script>
