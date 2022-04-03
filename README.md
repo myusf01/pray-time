@@ -1,3 +1,5 @@
+# pray times 🕌
+
 ![banner](public/img/repo/pray-times-banner.png)
 ![demo](public/img/repo/pray-times-demo.png)
 
@@ -5,8 +7,6 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/myusf01/pray-time?style=flat-square)![GitHub last commit](https://img.shields.io/github/last-commit/myusf01/pray-time?color=007ec6&style=flat-square)
 
 ---
-
-# pray times 🕌
 
 this is a Muslim prayer time tracker progressive web application, uses Vue.js, [Al Adhan Prayer Times API](https://aladhan.com/prayer-times-api) and [Country State City API](https://countrystatecity.in/).
 
@@ -21,13 +21,13 @@ this is a Muslim prayer time tracker progressive web application, uses Vue.js, [
 
 2. after downloads and installation is done you should assign [Country State City API](https://countrystatecity.in/) key to related variable.
 
-    ```console
+    ```bash
     VUE_APP_COUNTRY_API_KEY=ADD_API_KEY
     ```
 
 3. run project
 
-   ```console
+   ```bash
    npm run serve
    ```
 
