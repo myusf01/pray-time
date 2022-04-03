@@ -1,24 +1,3 @@
-# pray-time
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# pray times 🕌
+![pray-times-logo](public\img\icons\android-chrome-512x512.png)
+This is a Muslim prayer time tracker PWA, uses Vue.js, [Al Adhan Prayer Times API](https://aladhan.com/prayer-times-api) and [Country State City API](https://countrystatecity.in/). 
