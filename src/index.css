@@ -47,18 +47,16 @@
     from-[#3D7EAA]
     to-[#FFE47A];
   }
-  .Dhuhr {
-    @apply bg-gradient-to-t
-    from-[#108dc7]
-    to-[#ef8e38];
-  }
-
   .Sunrise {
     @apply bg-gradient-to-t
     from-[#f8c54f]
     to-[#e26d71];
   }
-
+  .Dhuhr {
+    @apply bg-gradient-to-t
+    from-[#108dc7]
+    to-[#ef8e38];
+  }
   .Asr {
     @apply bg-gradient-to-t
     from-[#479bfa]
@@ -113,7 +111,7 @@
     h-auto
     w-full
     min-w-[100px]
-    max-h-[124px]
+    max-h-[200px]
     overflow-y-auto
     bg-slate-100
     space-y-2

@@ -1,9 +1,9 @@
 <template>
   <div class="page-container settings">
     <div
-      class="settings-card h-full w-[75%] rounded-t-2xl bg-gradient-to-t from-[#FFFDE4]/50 to-[#fdffed]/20 shadow-2xl shadow-[#271c44]"
+      class="settings-card h-full w-[75%] rounded-t-2xl bg-gradient-to-t from-[#FFFDE4]/40 to-[#fdffed]/20 shadow-2xl shadow-[#100c1b]/70"
     >
-      <span class="text-5xl md:text-6xl font-semibold text-stone-800"
+      <span class="text-5xl md:text-6xl font-semibold text-white drop-shadow-md"
         >Settings</span
       >
 
@@ -36,7 +36,7 @@
       />
 
       <router-link
-        class="settings-item settings-text bg-blue-500 text-slate-100 shadow-lg shadow-blue-500/50"
+        class="settings-item settings-text text-2xl bg-blue-500 text-slate-100 shadow-lg shadow-blue-500/50"
         @click="fetchTimings"
         :disabled="!towns.length"
         to="/"

@@ -12,6 +12,7 @@ import {
 } from '@/utils'
 import moment from 'moment'
 
+const method = 15
 export default {
   async init({ commit, dispatch }) {
     try {
@@ -68,16 +69,12 @@ export default {
     const town = state.userTown.name
     const city = state.userCity.name
     const country = state.userCountry.name
-    const apiUrl = `${timingsUrl}address=${town},${city},${country}`
-    // const defaultUrl = `${timingsUrl}address=Fatih,İstanbul,Turkey`
-
+    const apiUrl = `${timingsUrl}method=${method}&address=${town},${city},${country}`
     try {
-      // `${process.env.VUE_APP_ADHAN_API_URL}city=${city}&country=${country}`
       const res = await fetch(apiUrl)
-      //   const data = await fetch(
-      //     `${process.env.VUE_APP_ADHAN_API_URL}city=${state.cityId}&country=${state.countryId}`
-      //   ).json
+
       const { data } = await res.json()
+      console.log(data)
       commit('GET_TIMINGS', data)
     } catch (e) {
       console.log(e)
@@ -90,8 +87,7 @@ export default {
     const date = moment(state.now, 'DD-MM-YYYY')
       .add(1, 'days')
       .format('DD-MM-YYYY')
-    const apiUrl = `${timingsByDateUrl}/${date}?method=4&address=${town},${city},${country}`
-    // const defaultUrl = `${timingsByDateUrl}/${date}?method=4&address=Fatih,İstanbul,Turkey`
+    const apiUrl = `${timingsByDateUrl}/${date}?method=${method}&address=${town},${city},${country}`
 
     try {
       const res = await fetch(apiUrl)
