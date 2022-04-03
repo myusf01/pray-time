@@ -3,7 +3,7 @@
 name: Generate Mockup Screenshot Mobile
 on:
   push:
-    branches: [master]
+    branches: [main]
 
 jobs:
   generate-screenshot:
