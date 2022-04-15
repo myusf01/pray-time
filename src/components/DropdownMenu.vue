@@ -3,12 +3,18 @@
     ref="dropdown"
     class="dropdown-menu absolute no-scrollbar settings-text upper shadow-lg shadow-gray-400/50"
   >
+    <input
+      class="h-10 w-full my-4 rounded-lg text-stone-800 p-4 cursor-pointer hover:bg-gray-200/30"
+      v-model="searchQuery"
+      type="text"
+      placeholder="Search"
+    />
     <span
-      class="block w-full rounded-lg text-stone-800 px-2 cursor-pointer hover:bg-gray-300/30"
-      v-for="item in menuArray"
+      class="block py-1 w-full rounded-lg text-stone-800 px-2 cursor-pointer hover:bg-gray-300/30"
+      v-for="item in filterArray"
       @click="$emit('selectItem', item)"
       :key="item.id"
-      :value="item"
+      :value="item.name"
     >
       {{ item.name }}
     </span>
@@ -20,7 +26,8 @@ export default {
   name: 'DropdownMenu',
   data() {
     return {
-      menuArray: this.menuList
+      menuArray: this.menuList,
+      searchQuery: ''
     }
   },
   props: {
@@ -29,7 +36,19 @@ export default {
       default: () => []
     }
   },
-
+  computed: {
+    filterArray() {
+      const query = this.searchQuery.toLowerCase()
+      if (this.searchQuery === '') {
+        return this.menuArray
+      }
+      return this.menuArray.filter((user) => {
+        return Object.values(user).some((word) =>
+          String(word).toLowerCase().includes(query)
+        )
+      })
+    }
+  },
   methods: {
     documentClick(e) {
       // manage dropdown menu
