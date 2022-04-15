@@ -1,29 +1,19 @@
-# Template workflow file to use in repo we want to generate image.
-
-name: Generate Mockup Screenshot Mobile
+name: Generate Banner
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "0 * * * *"
 
 jobs:
-  generate-mobile-screenshot:
+  generate-screenshot:
     runs-on: ubuntu-latest
 
     steps:
-      - name: dispatch mobile generator
+      - name: dispatch generator
         uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: screenshot-mockup-mobile-generator
-          repo: myusf01/ss-pipe
-          token: ${{ secrets.FLOW_TOKEN }}
-          inputs: '{ "repo": "${{ github.repository }}" }'
-  generate-laptop-screenshot:
-    runs-on: ubuntu-latest
-    steps:
-      - name: dispatch laptop generator
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          workflow: screenshot-mockup-laptop-generator
+          workflow: screenshot-banner-generator
           repo: myusf01/ss-pipe
           token: ${{ secrets.FLOW_TOKEN }}
           inputs: '{ "repo": "${{ github.repository }}" }'
