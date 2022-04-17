@@ -1,10 +1,11 @@
 {
     "name": "Pray Times",
-
     "short_name": "Pray Times",
     "description": "Muslim prayer times tracker.",
-    "start_url": "  index.html",
+    "start_url": "./index.html",
+    "id": "/index.html",
     "icons": [{
+
             "src": "/android-chrome-36x36.png",
             "sizes": "36x36",
             "type": "image/png"
