@@ -1,6 +1,6 @@
 # pray times 🕌
 
-![banner](public/img/repo/pray-times-banner.png)
+![banner](repo/pray-times-banner.png)
 ![demo](https://mysf-sspipe.s3.eu-central-1.amazonaws.com/pray-time-banner.png)
 
 ![GitHub branch checks state](https://img.shields.io/github/checks-status/myusf01/pray-time/main?label=deployment&logo=vue.js&style=flat-square)![GitHub Workflow Status](https://img.shields.io/github/workflow/status/myusf01/pray-time/Generate%20Mockup%20Screenshot%20Mobile?label=screenshots&style=flat-square)![Website](https://img.shields.io/website?down_message=down&style=flat-square&up_message=works&url=https%3A%2F%2Fpray-times.vercel.app%2F)
