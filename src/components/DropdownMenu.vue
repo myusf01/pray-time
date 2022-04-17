@@ -3,14 +3,16 @@
     ref="dropdown"
     class="dropdown-menu absolute no-scrollbar settings-text upper shadow-lg shadow-gray-400/50"
   >
-    <input
-      class="h-10 w-full my-4 rounded-lg text-stone-800 p-4 cursor-pointer hover:bg-gray-200/30"
-      v-model="searchQuery"
-      type="text"
-      placeholder="Search"
-    />
+    <div class="w-full border-b border-gray-300">
+      <input
+        class="h-10 w-full my-4 py-4 px-3 cursor-pointer rounded-lg text-stone-700 shadow-md shadow-slate-200 border border-slate-200 hover:bg-gray-50/95"
+        v-model="searchQuery"
+        type="text"
+        placeholder="Search"
+      />
+    </div>
     <span
-      class="block py-1 w-full rounded-lg text-stone-800 px-2 cursor-pointer hover:bg-gray-300/30"
+      class="block py-2 px-3 w-full cursor-pointer rounded-lg text-stone-700 hover:bg-gray-200/50"
       v-for="item in filterArray"
       @click="$emit('selectItem', item)"
       :key="item.id"

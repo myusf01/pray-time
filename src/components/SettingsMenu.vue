@@ -4,7 +4,7 @@
       @click.stop="isShow = !isShow"
       :disabled="isDisabled"
       :class="[{ 'bg-slate-300/50 text-slate-500': isDisabled }]"
-      class="settings-item pl-6 justify-between settings-text overflow-hidden bg-stone-100 text-stone-800 shadow-lg shadow-gray-300/50"
+      class="settings-item pl-6 justify-between settings-text overflow-hidden bg-slate-50 text-stone-700 shadow-lg shadow-gray-300/50"
     >
       {{ menuLabel }}
       <svg

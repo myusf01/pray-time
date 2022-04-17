@@ -12,7 +12,7 @@ import {
 } from '@/utils'
 import moment from 'moment'
 
-const method = 15
+const method = 13
 export default {
   async init({ commit, dispatch }) {
     try {
@@ -74,7 +74,7 @@ export default {
       const res = await fetch(apiUrl)
 
       const { data } = await res.json()
-      console.log(data)
+
       commit('GET_TIMINGS', data)
     } catch (e) {
       console.log(e)

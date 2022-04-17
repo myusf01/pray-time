@@ -107,13 +107,13 @@
     flex-col
     items-start
     justify-start
-    p-4
+    p-3
     h-auto
     w-full
     min-w-[100px]
     max-h-[200px]
     overflow-y-auto
-    bg-slate-100
+    bg-slate-50
     space-y-2
     rounded-md
     shadow-xl;
