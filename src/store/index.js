@@ -1,7 +1,6 @@
 import { createStore } from 'vuex'
-// import { VuexPersistence } from 'vuex-persist'
 import createPersistedState from 'vuex-persistedstate'
-import moment from 'moment/moment'
+import moment from 'moment-timezone'
 
 import mutations from './mutations'
 import getters from './getters'
@@ -13,7 +12,7 @@ import actions from './actions'
 export default createStore({
   plugins: [createPersistedState()],
   state: {
-    now: moment(),
+    now: moment().tz(getters.timeZone.tz),
     countries: [],
     cities: [],
     towns: [],

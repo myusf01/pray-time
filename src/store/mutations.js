@@ -1,7 +1,7 @@
-import moment from 'moment/moment'
+import moment from 'moment-timezone'
 export default {
-  UPDATE_TIME(state) {
-    state.now = moment()
+  UPDATE_TIME(state, data) {
+    state.now = moment().tz(data)
   },
   GET_COUNTRIES(state, data) {
     state.countries = data
