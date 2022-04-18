@@ -69,7 +69,9 @@ export default {
     const town = state.userTown.name
     const city = state.userCity.name
     const country = state.userCountry.name
-    const apiUrl = `${timingsUrl}method=${method}&address=${town},${city},${country}`
+
+    const apiUrl = timingsUrl(method, town, city, country)
+
     try {
       const res = await fetch(apiUrl)
 
@@ -87,7 +89,7 @@ export default {
     const date = moment(state.now, 'DD-MM-YYYY')
       .add(1, 'days')
       .format('DD-MM-YYYY')
-    const apiUrl = `${timingsByDateUrl}/${date}?method=${method}&address=${town},${city},${country}`
+    const apiUrl = timingsByDateUrl(date, method, town, city, country)
 
     try {
       const res = await fetch(apiUrl)
