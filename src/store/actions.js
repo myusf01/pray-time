@@ -10,7 +10,7 @@ import {
   defaultCity,
   defaultTown
 } from '@/utils'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 const method = 13
 export default {
@@ -28,6 +28,7 @@ export default {
       console.log(e)
     }
   },
+
   async fetchCountries({ commit }) {
     try {
       const res = await fetch(countryUrl, requestOptions)

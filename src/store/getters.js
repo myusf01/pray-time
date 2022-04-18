@@ -1,5 +1,5 @@
 import { convertJson } from '@/utils'
-import moment from 'moment/moment'
+import moment from 'moment-timezone'
 import momentDurationFormatSetup from 'moment-duration-format'
 import Timing from '@/utils/convertTimings'
 momentDurationFormatSetup(moment)
@@ -14,10 +14,19 @@ export default {
         'day'
       )
     )
-    const timings = { ...times.timings, date: times.date.gregorian.date }
+    const timings = {
+      ...times.timings,
+      date: times.date.gregorian.date,
+      timezone: times.meta.timezone
+    }
     const newTimings = new Timing(timings)
+    moment.tz.setDefault(times.meta.timezone)
     state.todayTimes = newTimings
     return newTimings
+  },
+  timeZone: (state, getters) => {
+    const tz = getters.today.timeZone
+    return { tz }
   },
   tomorrow: (state) => {
     const time = convertJson(state.times)

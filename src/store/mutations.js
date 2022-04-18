@@ -1,4 +1,4 @@
-import moment from 'moment/moment'
+import moment from 'moment-timezone'
 export default {
   UPDATE_TIME(state) {
     state.now = moment()

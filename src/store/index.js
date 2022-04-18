@@ -1,7 +1,6 @@
 import { createStore } from 'vuex'
-// import { VuexPersistence } from 'vuex-persist'
 import createPersistedState from 'vuex-persistedstate'
-import moment from 'moment/moment'
+import moment from 'moment-timezone'
 
 import mutations from './mutations'
 import getters from './getters'

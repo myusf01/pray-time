@@ -3,6 +3,7 @@ import moment from 'moment/moment'
 export default class Timing {
   constructor(data) {
     this.Date = data.date
+    this.timezone = data.timezone
     this.Imsak = this.convertToDate(data.Imsak.split(' ')[0])
     this.Sunrise = this.convertToDate(data.Sunrise.split(' ')[0])
     this.Dhuhr = this.convertToDate(data.Dhuhr.split(' ')[0])
