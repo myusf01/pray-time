@@ -6,10 +6,9 @@ import store from './store'
 import './index.css'
 
 async function init() {
-  const tz = store.state.todayTimes.timezone
-  store.commit('UPDATE_TIME', tz)
+  store.commit('UPDATE_TIME')
   setInterval(() => {
-    store.commit('UPDATE_TIME', tz)
+    store.commit('UPDATE_TIME')
   }, 1000)
 
   if (!store.state.countries.length) {

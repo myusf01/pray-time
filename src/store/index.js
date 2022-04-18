@@ -12,7 +12,7 @@ import actions from './actions'
 export default createStore({
   plugins: [createPersistedState()],
   state: {
-    now: moment().tz(getters.timeZone.tz),
+    now: moment(),
     countries: [],
     cities: [],
     towns: [],

@@ -10,7 +10,7 @@ import {
   defaultCity,
   defaultTown
 } from '@/utils'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 const method = 13
 export default {
@@ -24,6 +24,15 @@ export default {
       commit('SET_USER_TOWN', defaultTown)
       await dispatch('fetchTimings')
       await dispatch('fetchTimingsTomorrow')
+      await dispatch('setTimezone')
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async setTimezone({ state }) {
+    try {
+      const tz = state.todayTimes.timezone
+      moment.tz.setDefault(tz)
     } catch (e) {
       console.log(e)
     }
