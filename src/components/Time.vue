@@ -16,11 +16,13 @@
   >
     <div class="mx-auto space-y-10 p-2 text-slate-100 my-auto">
       <div class="active-text mb-[30%]">
+        <span class="block font-bold text-3xl md:text-5xl">{{ clock }}</span>
         <router-link
           class="block font-bold text-3xl md:text-5xl underline"
           to="/settings"
           >{{ userCity }}</router-link
         >
+
         <div class="active-text space-y-1">
           <span class="text-xl md:text-3xl">
             {{ dayInfo.hijri.stringEN }}
@@ -45,7 +47,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 export default {
   name: 'TimeComponent',
   props: {
@@ -56,12 +58,16 @@ export default {
     dayInfo: Object
   },
   computed: {
+    ...mapState(['now']),
     ...mapGetters(['userCity', 'nextTime']),
     isActiveTime() {
       return this.timing === this.currentTime
     },
     next() {
       return this.nextTime
+    },
+    clock() {
+      return this.now.format('HH:mm:ss')
     }
   }
 }
