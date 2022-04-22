@@ -34,3 +34,6 @@ this is a Muslim prayer time tracker progressive web application, uses Vue.js, [
 ## license
 
 ![MIT](https://img.shields.io/github/license/myusf01/pray-time?style=flat-square)
+
+## links
+[Pray Time Icon](https://www.flaticon.com/free-icons/mosque)
